@@ -29,21 +29,21 @@ class BudgetController {
 	private ProjectRepository projectRepository;
 
 	@Autowired
-	private BudgetRepository budgetRepository;
+	private BudgetRepository budgetRepository; 
 
 	@GetMapping("/budgets")
-	List<Budget> all(@RequestParam Long projectId) {
+	List<Budget> all(@RequestParam Integer projectId) {
 		return budgetRepository.findByProjectId(projectId);
 	}
 	
 	@GetMapping("/budgets/{id}")
-	Budget findById(@PathVariable Long id) {
+	Budget findById(@PathVariable Integer id) {
 	    return budgetRepository.findById(id)
 	      .orElseThrow(() -> new NotFoundException(id));
 	}
 	
 	@PostMapping("/budgets")
-	Budget createBudget(@RequestParam Long projectId, @RequestBody @Valid Budget newBudget) {
+	Budget createBudget(@RequestParam Integer projectId, @RequestBody @Valid Budget newBudget) {
         return projectRepository.findById(projectId).map(project -> {
         	newBudget.setProject(project);
             return budgetRepository.save(newBudget);
@@ -51,7 +51,7 @@ class BudgetController {
 	}
 	
 	@PutMapping("/budgets/{id}")
-	Budget updateBudget(@PathVariable Long id, @RequestBody @Valid Budget newBudget) {
+	Budget updateBudget(@PathVariable Integer id, @RequestBody @Valid Budget newBudget) {
 
 	    return budgetRepository.findById(id)
 	    	.map(budget -> {
@@ -61,7 +61,7 @@ class BudgetController {
 	}
 	
 	@DeleteMapping("/budgets/{id}")
-	void deleteBudget(@PathVariable Long id) {
+	void deleteBudget(@PathVariable Integer id) {
 	    budgetRepository.deleteById(id);
 	}
 	

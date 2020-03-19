@@ -26,7 +26,7 @@ public class Budget {
 
 	@Id 
 	@GeneratedValue 
-	private Long id;
+	private Integer id;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "PROJECT_ID")

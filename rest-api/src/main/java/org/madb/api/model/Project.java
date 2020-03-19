@@ -27,7 +27,7 @@ public class Project {
 	
 	@Id 
 	@GeneratedValue 
-	private Long id;
+	private Integer id;
 	
 	@NotNull
 	private Status status = Status.PENDING; 

@@ -7,7 +7,7 @@ public class NotFoundException extends RuntimeException {
 		super(message);
 	}
 	
-	public NotFoundException(Long id) {
+	public NotFoundException(Integer id) {
 		super("resource not found, id: " + id);
 	}
 	

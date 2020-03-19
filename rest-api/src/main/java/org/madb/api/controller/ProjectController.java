@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.validation.Valid;
 
-import org.madb.api.controller.exception.NotFoundException;
 import org.madb.api.controller.exception.BadRequestException;
+import org.madb.api.controller.exception.NotFoundException;
 import org.madb.api.jpa.ProjectRepository;
 import org.madb.api.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +32,7 @@ class ProjectController {
 	}
 	
 	@GetMapping("/projects/{id}")
-	Project findById(@PathVariable Long id) {
+	Project findById(@PathVariable Integer id) {
 	    return projectRepository.findById(id)
 	    .orElseThrow(() -> new NotFoundException(id));
 	}
@@ -45,7 +45,7 @@ class ProjectController {
 	}
 	
 	@PutMapping("/projects/{id}")
-	Project updateProject(@PathVariable Long id, @RequestBody @Valid Project newProject) {
+	Project updateProject(@PathVariable Integer id, @RequestBody @Valid Project newProject) {
 
 	    return projectRepository.findById(id)
 	    	.map(project -> {

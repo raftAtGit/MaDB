@@ -32,18 +32,18 @@ class ContactController {
 	private ContactRepository contactRepository;
 
 	@GetMapping("/contacts")
-	List<Contact> all(@RequestParam Long projectId) {
+	List<Contact> all(@RequestParam Integer projectId) {
 		return contactRepository.findByProjectId(projectId);
 	}
 	
 	@GetMapping("/contacts/{id}")
-	Contact findById(@PathVariable Long id) {
+	Contact findById(@PathVariable Integer id) {
 	    return contactRepository.findById(id)
 	      .orElseThrow(() -> new NotFoundException(id));
 	}
 	
 	@PostMapping("/contacts")
-	Contact createContact(@RequestParam Long projectId, @RequestBody @Valid Contact newContact) {
+	Contact createContact(@RequestParam Integer projectId, @RequestBody @Valid Contact newContact) {
         return projectRepository.findById(projectId).map(project -> {
         	newContact.setProject(project);
             return contactRepository.save(newContact);
@@ -51,7 +51,7 @@ class ContactController {
 	}
 	
 	@PutMapping("/contacts/{id}")
-	Contact updateContact(@PathVariable Long id, @RequestBody @Valid Contact newContact) {
+	Contact updateContact(@PathVariable Integer id, @RequestBody @Valid Contact newContact) {
 
 	    return contactRepository.findById(id)
 	    	.map(contact -> {
@@ -61,7 +61,7 @@ class ContactController {
 	}
 	
 	@DeleteMapping("/contacts/{id}")
-	void deleteContact(@PathVariable Long id) {
+	void deleteContact(@PathVariable Integer id) {
 		contactRepository.deleteById(id);
 	}
 	

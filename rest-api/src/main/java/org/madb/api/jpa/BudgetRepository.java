@@ -5,8 +5,8 @@ import java.util.List;
 import org.madb.api.model.Budget;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BudgetRepository extends JpaRepository<Budget, Long> {
+public interface BudgetRepository extends JpaRepository<Budget, Integer> {
 	
-	List<Budget> findByProjectId(Long projectId);
+	List<Budget> findByProjectId(Integer projectId);
 
 }
