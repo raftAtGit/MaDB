@@ -1,9 +1,12 @@
-# Docker
-# Build a Docker image 
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+# CI (Continuous Integration) pipleine definition for Azure DevOps
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - 'rest-api/*' 
 
 resources:
 - repo: self
