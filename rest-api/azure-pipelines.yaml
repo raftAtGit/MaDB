@@ -1,0 +1,42 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: Docker@2
+      displayName: Docker build image
+      inputs:
+        command: build
+        repository: raft/madb-api
+        dockerfile: '$(Build.SourcesDirectory)/planinternational/Dockerfile'
+        tags: |
+          $(tag)
+          latest
+    - task: Docker@2
+      displayName: Docker push image
+      inputs:
+        command: push
+        containerRegistry: docker_hub_connection_raft
+        repository: raft/madb-api
+        tags: |
+          $(tag)
+          latest
+    - publish: planinternational/kube/
+      artifact: kube
