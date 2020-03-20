@@ -9,6 +9,16 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+madb:
+  db:
+    password:
+
 # environment variables passed to Pod via ConfigMap 
 env:
 #  MD_USER: some value
+
+java:
+  maxMemory: 1024m
+  # System properties passed to JVM
+  properties:
+    'spring.profiles.active': live

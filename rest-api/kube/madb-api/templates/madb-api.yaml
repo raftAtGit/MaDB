@@ -54,6 +54,13 @@ spec:
       - name: madb-api 
         image: raft/madb-api: {{- .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
+        command: ["sh", "-c", "java -Xmx{{- .Values.java.maxMemory }} \
+                    -Dspring.datasource.password={{- .Values.madb.db.password }} \
+                    {{- range $key, $value := .Values.java.properties }}
+                    -D{{ $key }}={{ $value }} \
+                    {{- end }}
+                    -jar /app.jar" ]
+        
         ports:
         - containerPort: 8080
         envFrom: 

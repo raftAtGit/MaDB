@@ -19,7 +19,7 @@ import org.springframework.context.annotation.Configuration;
 import lombok.extern.slf4j.Slf4j;
 
 @Configuration
-@ConditionalOnProperty(value="environment.local", havingValue="true")
+@ConditionalOnProperty("madb.db.createInitialRecords")
 @Slf4j
 class DataInitializer {
 	

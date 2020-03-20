@@ -1,0 +1,38 @@
+# default values if no profile is provided
+# also the base values overriden by profiles
+spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: false
+        ddl-auto: update
+
+madb:
+  db: 
+    createInitialRecords: true
+    
+---
+# local profile
+spring:
+  profiles: local
+
+---
+# live profile
+spring:
+  profiles: live
+
+  datasource:
+    driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://planserver.database.windows.net:1433;database=madb
+    username: planserver@planserver
+    password: < FILL IN WITH SYSTEM PROPERTY spring.datasource.password >
+
+    jpa: 
+      properties:
+        hibernate:
+          dialect: org.hibernate.dialect.SQLServer2012Dialect
+
+madb:
+  db: 
+    createInitialRecords: false
