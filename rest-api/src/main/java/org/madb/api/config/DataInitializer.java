@@ -7,9 +7,15 @@ import java.text.SimpleDateFormat;
 import org.madb.api.jpa.BudgetRepository;
 import org.madb.api.jpa.ContactRepository;
 import org.madb.api.jpa.ProjectRepository;
+import org.madb.api.jpa.FundingRepository;
+import org.madb.api.jpa.BeneficiariesRepository;
+import org.madb.api.jpa.ThemeRepository;
 import org.madb.api.model.Budget;
 import org.madb.api.model.Contact;
 import org.madb.api.model.Project;
+import org.madb.api.model.Beneficiaries;
+import org.madb.api.model.Funding;
+import org.madb.api.model.Themes;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -31,6 +37,16 @@ class DataInitializer {
 	
 	@Autowired
 	private ContactRepository contactRepository;
+        
+        @Autowired
+	private FundingRepository fundingRepository;
+        
+        @Autowired
+	private BeneficiariesRepository beneficiariesRepository;
+        
+        @Autowired
+	private ThemeRepository themeRepository;
+        
 	
 	@Bean
 	CommandLineRunner createInitialRecords() {
@@ -46,9 +62,16 @@ class DataInitializer {
 	    			null)));
 	    	
 	    	log.info("Preloading " + budgetRepository.save(new Budget(null, project, "2019-2020", new BigDecimal(100000))));
-
+                
 	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Primary", "Paul", "Brown", "Account Manager")));
 	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Secondary", "Bob", "Smith", "Junior Account Manager")));
+                
+                log.info("Preloading " + themeRepository.save(new Themes(null, project, "Digital")));
+                
+                log.info("Preloading " + fundingRepository.save(new Funding(null, project, "Child sponsorship ")));
+                
+                log.info("Preloading " + beneficiariesRepository.save(new Beneficiaries(null, project, "Male","2014",5)));
+                
 	    };
 	  }	
 

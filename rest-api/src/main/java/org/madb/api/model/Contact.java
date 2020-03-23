@@ -26,8 +26,8 @@ public class Contact {
 
 	@Id 
 	@GeneratedValue 
-	private Integer id;
-	
+    private Integer id;
+        
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "PROJECT_ID")
 	@JsonIgnore
@@ -46,10 +46,10 @@ public class Contact {
 	@NotNull
 	@Size(max=100)
 	@Column(name = "LAST_NAME")
-	private String lastName;
+    private String lastName;
 
 	@NotNull
 	@Size(max=100)
-	private String functions;
+    private String functions;
 	
 }
