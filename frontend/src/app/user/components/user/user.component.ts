@@ -2,32 +2,38 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { map, startWith, takeWhile } from 'rxjs/operators';
-import { RequestLibrary } from 'src/app/shared/libraries/request.lib';
-import { environment } from 'src/environments/environment';
+
+import { ProjectService, UserService } from '../../services';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-project',
-  templateUrl: './project.component.html',
-  styleUrls: ['./project.component.scss']
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.scss']
 })
-export class ProjectComponent implements OnInit, OnDestroy {
+export class UserComponent implements OnInit, OnDestroy {
   private isComponentActive: boolean;
   form: FormGroup;
   projects: any[];
   filteredProjects: Observable<any[]>;
 
   constructor(
-    private formBuilder: FormBuilder
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private projectService: ProjectService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
     this.isComponentActive = true;
 
+    const { userData } = this.projectService.getProjectData();
+
     this.form = this.formBuilder.group({
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      type: [null, [Validators.required]],
-      projectId: [null]
+      firstName: [userData.firstName, [Validators.required]],
+      lastName: [userData.lastName, [Validators.required]],
+      type: [userData.type, [Validators.required]],
+      projectId: [userData.projectId]
     }, { validator: this.validateProject });
 
     this.filteredProjects = this.form.get('projectId').valueChanges
@@ -46,9 +52,13 @@ export class ProjectComponent implements OnInit, OnDestroy {
         })
       ).subscribe();
 
-    this.getProjects()
+    this.userService.getProjects()
       .then((projects) => {
+        console.log('projects', projects);
         this.projects = projects;
+      })
+      .catch((err) => {
+        console.error(err);
       });
   }
 
@@ -59,7 +69,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
   private _filter(value: string): any[] {
     const filterValue = value.toLowerCase();
     return this.projects.filter(project => project.name.toLowerCase().includes(filterValue)
-      || project.id.toLowerCase().includes(filterValue));
+      || project.projectId.toLowerCase().includes(filterValue));
   }
 
   private validateProject(form: FormGroup) {
@@ -74,22 +84,22 @@ export class ProjectComponent implements OnInit, OnDestroy {
     return null;
   }
 
-  private getProjects(): Promise<any[]> {
-    const endPoint = 'v1/projects';
-    const url = `${environment.settings.api}/${endPoint}`;
-
-    return RequestLibrary.get(undefined, url)
-      .then((projects) => {
-        console.log('projects', projects);
-        return projects;
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-
   onSubmit(form: FormGroup) {
     console.log('form value', form.value);
+    if (form.invalid) {
+      return;
+    }
+
+    this.userService.getProjectData(form.value.projectId)
+      .then((project) => {
+        console.log('got project', project);
+        this.projectService.setProjectData(project);
+        this.projectService.setUserData(form.value);
+        this.router.navigate(['project']);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
 }

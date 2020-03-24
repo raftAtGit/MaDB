@@ -1,0 +1,22 @@
+section#user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    width: 80%;
+    .form-item {
+      display: block;
+      height: 64px;
+      width: 100%;
+
+      .mat-radio-button:not(:first-child) {
+        margin-left: 24px;
+      }
+    }
+    .submit {
+      margin-top: 24px;
+      text-align: right;
+    }
+  }
+}

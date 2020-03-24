@@ -1,0 +1,31 @@
+<section id="project" *ngIf="form">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)" autocomplete="false">
+    <h2>Project information</h2>
+    
+    <!-- Project ID -->
+    <mat-form-field class="form-item">
+      <mat-label for="projectId">Project ID</mat-label>
+      <input matInput name="projectId" formControlName="projectId">
+      <mat-error *ngIf="form.get('projectId').invalid">
+        Project ID is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Project name -->
+    <mat-form-field class="form-item">
+      <mat-label for="projectName">Project name</mat-label>
+      <input matInput name="projectName" formControlName="projectName">
+      <mat-error *ngIf="form.get('projectName').invalid">
+        Project name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Submit button -->
+    <div class="submit">
+      <button mat-button type="submit" color="accent" [disabled]="form.invalid">Next</button>
+    </div>
+
+  </form>
+
+</section>

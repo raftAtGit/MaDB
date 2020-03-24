@@ -2,13 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ProjectComponent } from './project/project.component';
+import { ManageComponent, ProjectComponent, UserComponent } from './components';
 import { SharedModule } from '../shared/shared.module';
-import { UserComponent } from './user/user.component';
 
 const ROUTES: Routes = [
   {
     path: '',
+    component: ManageComponent
+  },
+  {
+    path: 'user',
     component: UserComponent
   },
   {
@@ -20,7 +23,8 @@ const ROUTES: Routes = [
 @NgModule({
   declarations: [
     UserComponent,
-    ProjectComponent
+    ProjectComponent,
+    ManageComponent
   ],
   imports: [
     CommonModule,
