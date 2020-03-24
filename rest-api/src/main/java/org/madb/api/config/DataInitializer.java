@@ -66,11 +66,11 @@ class DataInitializer {
 	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Primary", "Paul", "Brown", "Account Manager")));
 	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Secondary", "Bob", "Smith", "Junior Account Manager")));
                 
-                log.info("Preloading " + themeRepository.save(new Themes(null, project, "Digital")));
-                
-                log.info("Preloading " + fundingRepository.save(new Funding(null, project, "Child sponsorship ")));
-                
-                log.info("Preloading " + beneficiariesRepository.save(new Beneficiaries(null, project, "Male","2014",5)));
+            log.info("Preloading " + themeRepository.save(new Themes(null, project, "Digital")));
+            
+            log.info("Preloading " + fundingRepository.save(new Funding(null, project, "Child sponsorship ")));
+            
+            log.info("Preloading " + beneficiariesRepository.save(new Beneficiaries(null, project, "Male","2014",5)));
                 
 	    };
 	  }	
