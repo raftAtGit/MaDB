@@ -5,6 +5,6 @@ COPY nginx/default.conf /etc/nginx/conf.d/
 
 # copy app
 WORKDIR /app
-COPY dist/ .
+COPY dist/madb .
 
 CMD ["nginx", "-g", "daemon off;"]
