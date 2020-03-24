@@ -38,13 +38,13 @@ class DataInitializer {
 	@Autowired
 	private ContactRepository contactRepository;
         
-        @Autowired
+    @Autowired
 	private FundingRepository fundingRepository;
         
-        @Autowired
+    @Autowired
 	private BeneficiariesRepository beneficiariesRepository;
         
-        @Autowired
+    @Autowired
 	private ThemeRepository themeRepository;
         
 	
