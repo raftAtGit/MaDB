@@ -65,6 +65,7 @@ class ProjectController {
 		to.setBudget(from.getBudget());
 		to.setDescription(from.getDescription());
 		to.setObservations(from.getObservations());
+                to.setUser(from.getUser());
 	}
 
 }

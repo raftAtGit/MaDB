@@ -54,12 +54,12 @@ class DataInitializer {
 	    	log.info("creating initial database records");
 	    	
 	    	Project project = new Project(null, Project.Status.PENDING, "B1", "Burkina Faso", "Promoting Quality Education in South West regions in Burkina Faso  (EQUIP)", 
-	    			date("01/01/2017"), date("31/12/2021"), new BigDecimal(1280925), "Cool project", "Partial YEE");
+	    			date("01/01/2017"), date("31/12/2021"), new BigDecimal(1280925), "Cool project", "Partial YEE","DummyUser1");
 	    	log.info("Preloading " + projectRepository.save(project));
 	    	log.info("Preloading " + projectRepository.save(new Project(null, Project.Status.APPROVED, "E1", "Egypt", "Pioneers for the Future: Contributing to a more inclusive work environment for young women in Egypt", 
 	    			date("01/01/2014"), date("31/12/2021"), new BigDecimal(833939), 
 	    			"The project aims to enhance economic participation of young women and men aged 18-35, from marginalized areas of Cairo, Alexandria and Assuit in Egypt, and promote equal economic opportunities and decision making for young women. If youth have access to employability, entrepreneurship, relevant technical and innovative skills to access either wage or self-employment opportunities; and key stakeholders have the capacity and understanding to promote gender supportive work and business environment, then those youth will earn income and develop confidence, improving their long-term capabilities and economic status.", 
-	    			null)));
+	    			null,"DummyUser2")));
 	    	
 	    	log.info("Preloading " + budgetRepository.save(new Budget(null, project, "2019-2020", new BigDecimal(100000))));
                 

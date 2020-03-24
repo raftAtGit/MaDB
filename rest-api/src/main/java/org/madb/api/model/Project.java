@@ -65,6 +65,10 @@ public class Project {
 	@Size(max = 100)
 	@Column(name = "OBSERVATIONS")
 	private String observations;
+        
+        @Size(max = 500)
+	@Column(name = "USER")
+	private String user;
 	
 
 }
