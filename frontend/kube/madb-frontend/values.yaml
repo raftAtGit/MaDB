@@ -1,5 +1,5 @@
 ingress:
-  host: api.madb.nl
+  host: madb.nl
 
 # number of pod replicas
 replicas: 1
