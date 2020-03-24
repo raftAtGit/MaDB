@@ -1,0 +1,61 @@
+# CI (Continuous Integration) pipleine definition for Azure DevOps
+
+trigger:
+  branches:
+    include:
+    - '*'
+  paths:
+    include:
+    - 'frontend/*' 
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+  nodeVersion: '12.16.1'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:  
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: NodeTool@0
+      displayName: Use $(nodeVersion)
+      inputs:
+        versionSpec: $(nodeVersion)
+    - task: Npm@1
+      displayName: NPM install
+      inputs:
+        command: install
+        workingDir: frontend
+    - task: Npm@1
+      displayName: NPM build
+      inputs:
+        command: custom
+        customCommand: run build
+        workingDir: frontend
+    - task: Docker@2
+      displayName: Docker build image
+      inputs:
+        command: build
+        repository: raft/madb-frontend
+        dockerfile: '$(Build.SourcesDirectory)/frontend/Dockerfile'
+        tags: |
+          $(tag)
+          latest
+    - task: Docker@2
+      displayName: Docker push image
+      inputs:
+        command: push
+        containerRegistry: docker_hub_connection_raft
+        repository: raft/madb-frontend
+        tags: |
+          $(tag)
+          latest
+    - publish: frontend/kube/
+      artifact: kube
