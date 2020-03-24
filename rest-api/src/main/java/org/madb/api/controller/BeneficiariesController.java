@@ -34,18 +34,18 @@ public class BeneficiariesController {
 	@Autowired
 	private BeneficiariesRepository beneficiariesRepository;
 
-	@GetMapping("/Beneficiaries")
+	@GetMapping("/beneficiaries")
 	List<Beneficiaries> all(@RequestParam Integer projectId) {
 		return beneficiariesRepository.findByProjectId(projectId);
 	}
 	
-	@GetMapping("/Beneficiaries/{id}")
+	@GetMapping("/beneficiaries/{id}")
 	Beneficiaries findById(@PathVariable Integer id) {
 	    return  beneficiariesRepository.findById(id)
 	      .orElseThrow(() -> new NotFoundException(id));
 	}
 	
-	@PostMapping("/Beneficiaries")
+	@PostMapping("/beneficiaries")
 	Beneficiaries createBeneficiaries(@RequestParam Integer projectId, @RequestBody @Valid Beneficiaries newbeneficiary) {
         return projectRepository.findById(projectId).map(beneficiary -> {
         	newbeneficiary.setProject(beneficiary);
@@ -53,7 +53,7 @@ public class BeneficiariesController {
         }).orElseThrow(() -> new NotFoundException("project not found, id: " + projectId));
 	}
 	
-	@PutMapping("/Beneficiaries/{id}")
+	@PutMapping("/beneficiaries/{id}")
 	   Beneficiaries updateBeneficiaries(@PathVariable Integer id, @RequestBody @Valid Beneficiaries newBeneficiaries) {
 
 	    return beneficiariesRepository.findById(id)
@@ -63,7 +63,7 @@ public class BeneficiariesController {
 	    }).orElseThrow(() -> new NotFoundException(id));
 	}
 	
-	@DeleteMapping("/Beneficiaries/{id}")
+	@DeleteMapping("/beneficiaries/{id}")
 	void deleteBeneficiaries(@PathVariable Integer id) {
 		beneficiariesRepository.deleteById(id);
 	}

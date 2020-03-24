@@ -34,18 +34,18 @@ public class ThemesController {
 	@Autowired
 	private ThemeRepository themeRepository;
 
-	@GetMapping("/Themes")
+	@GetMapping("/themes")
 	List<Themes> all(@RequestParam Integer projectId) {
 		return themeRepository.findByProjectId(projectId);
 	}
 	
-	@GetMapping("/Themes/{id}")
+	@GetMapping("/themes/{id}")
 	Themes findById(@PathVariable Integer id) {
 	    return  themeRepository.findById(id)
 	      .orElseThrow(() -> new NotFoundException(id));
 	}
 	
-	@PostMapping("/Themes")
+	@PostMapping("/themes")
 	Themes createThemes(@RequestParam Integer projectId, @RequestBody @Valid Themes newtheme) {
         return projectRepository.findById(projectId).map(theme -> {
         	newtheme.setProject(theme);
@@ -53,7 +53,7 @@ public class ThemesController {
         }).orElseThrow(() -> new NotFoundException("project not found, id: " + projectId));
 	}
 	
-	@PutMapping("/Themes/{id}")
+	@PutMapping("/themes/{id}")
 	   Themes updateThemes(@PathVariable Integer id, @RequestBody @Valid Themes newTheme) {
 
 	    return themeRepository.findById(id)
@@ -63,7 +63,7 @@ public class ThemesController {
 	    }).orElseThrow(() -> new NotFoundException(id));
 	}
 	
-	@DeleteMapping("/Themes/{id}")
+	@DeleteMapping("/themes/{id}")
 	void deleteThemes(@PathVariable Integer id) {
 		themeRepository.deleteById(id);
 	}

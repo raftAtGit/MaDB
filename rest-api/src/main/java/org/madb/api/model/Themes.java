@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Themes")
+@Table(name = "THEMES")
 
 public class Themes {
     @Id 

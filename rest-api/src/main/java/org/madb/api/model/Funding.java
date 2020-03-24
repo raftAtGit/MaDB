@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Funding")
+@Table(name = "FUNDING_SOURCES")
 
 public class Funding {
     @Id 
