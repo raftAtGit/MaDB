@@ -26,10 +26,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "THEMES")
+@Table(name = "PARTNERSHIPS")
 
-public class Themes {
-    @Id 
+public class Partnerships {
+   @Id 
     @GeneratedValue 
     private Integer id;
 
@@ -39,11 +39,16 @@ public class Themes {
     private Project project;
     
     @NotNull
-    @Size(max=100)
-    @Column(name = "THEME")
-    private String theme;
+    @Size(max=500)
+    @Column(name = "PARTNERSHIP_TYPE")
+    private String partnership_type;
+    
+    @NotNull
+    @Size(max=500)
+    @Column(name = "PARTNER")
+    private String partner;
     
     @Size(max = 500)
     @Column(name = "USER")
-    private String user;  
+    private String user;   
 }

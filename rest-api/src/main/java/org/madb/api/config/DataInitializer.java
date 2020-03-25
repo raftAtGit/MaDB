@@ -10,12 +10,14 @@ import org.madb.api.jpa.ProjectRepository;
 import org.madb.api.jpa.FundingRepository;
 import org.madb.api.jpa.BeneficiariesRepository;
 import org.madb.api.jpa.ThemeRepository;
+import org.madb.api.jpa.PartnershipRepository;
 import org.madb.api.model.Budget;
 import org.madb.api.model.Contact;
 import org.madb.api.model.Project;
 import org.madb.api.model.Beneficiaries;
 import org.madb.api.model.Funding;
 import org.madb.api.model.Themes;
+import org.madb.api.model.Partnerships;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -47,6 +49,9 @@ class DataInitializer {
         @Autowired
 	private ThemeRepository themeRepository;
         
+        @Autowired
+        private PartnershipRepository partnershipRepository;
+        
 	
 	@Bean
 	CommandLineRunner createInitialRecords() {
@@ -72,6 +77,7 @@ class DataInitializer {
                 
                 log.info("Preloading " + beneficiariesRepository.save(new Beneficiaries(null, project, "Male","2014",5,"DummyUser2")));
                 
+                log.info("Preloading " + partnershipRepository.save(new Partnerships(null, project, "DummyPartnerType1","DummyPart1","DummyUser2")));
 	    };
 	  }	
 
