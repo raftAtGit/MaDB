@@ -18,6 +18,14 @@ madb:
 spring:
   profiles: local
 
+  datasource:
+    url: jdbc:h2:mem:testdb
+
+  h2:
+    console:
+      enabled: true
+      path: /h2
+
 ---
 # live profile
 spring:

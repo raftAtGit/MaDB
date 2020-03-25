@@ -40,13 +40,13 @@ class DataInitializer {
 	@Autowired
 	private ContactRepository contactRepository;
         
-        @Autowired
+    @Autowired
 	private FundingRepository fundingRepository;
         
-        @Autowired
+    @Autowired
 	private BeneficiariesRepository beneficiariesRepository;
         
-        @Autowired
+    @Autowired
 	private ThemeRepository themeRepository;
         
         @Autowired
@@ -70,14 +70,10 @@ class DataInitializer {
                 
 	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Primary", "Paul", "Brown", "Account Manager","DummyUser2")));
 	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Secondary", "Bob", "Smith", "Junior Account Manager","DummyUser2")));
-                
-                log.info("Preloading " + themeRepository.save(new Themes(null, project, "Digital","DummyUser2")));
-                
-                log.info("Preloading " + fundingRepository.save(new Funding(null, project, "Child sponsorship ","DummyUser2")));
-                
-                log.info("Preloading " + beneficiariesRepository.save(new Beneficiaries(null, project, "Male","2014",5,"DummyUser2")));
-                
-                log.info("Preloading " + partnershipRepository.save(new Partnerships(null, project, "DummyPartnerType1","DummyPart1","DummyUser2")));
+        log.info("Preloading " + themeRepository.save(new Themes(null, project, "Digital","DummyUser2")));
+        log.info("Preloading " + fundingRepository.save(new Funding(null, project, "Child sponsorship ","DummyUser2")));        
+        log.info("Preloading " + beneficiariesRepository.save(new Beneficiaries(null, project, "Male","2014",5,"DummyUser2"))); 
+        log.info("Preloading " + partnershipRepository.save(new Partnerships(null, project, "DummyPartnerType1","DummyPart1","DummyUser2")));
 	    };
 	  }	
 

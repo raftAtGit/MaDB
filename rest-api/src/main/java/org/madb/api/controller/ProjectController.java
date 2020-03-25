@@ -46,9 +46,13 @@ class ProjectController {
 	
 	@PutMapping("/projects/{id}")
 	Project updateProject(@PathVariable Integer id, @RequestBody @Valid Project newProject) {
+		
 
 	    return projectRepository.findById(id)
 	    	.map(project -> {
+	    		if (!newProject.getProjectId().equals(project.getProjectId()) && projectRepository.existsByProjectId(newProject.getProjectId()))
+    				throw new BadRequestException("projectId already exists: " + newProject.getProjectId());
+	    		
 	    		copyProject(newProject, project);
 	    		return projectRepository.save(project);
 	    	})

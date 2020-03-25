@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.sql.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
