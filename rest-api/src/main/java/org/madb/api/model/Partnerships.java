@@ -48,7 +48,8 @@ public class Partnerships {
     @Column(name = "PARTNER")
     private String partner;
     
-    @Size(max = 500)
+    @NotNull
+    @Size(max = 50)
     @Column(name = "USER")
     private String user;   
 }

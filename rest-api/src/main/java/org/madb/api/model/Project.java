@@ -66,7 +66,8 @@ public class Project {
 	@Column(name = "OBSERVATIONS")
 	private String observations;
         
-        @Size(max = 500)
+        @NotNull
+        @Size(max = 50)
 	@Column(name = "USER")
 	private String user;
 	

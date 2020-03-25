@@ -73,6 +73,5 @@ public class BeneficiariesController {
 		to.setFinancial_year(from.getFinancial_year());
                 to.setGender(from.getGender());
                 to.setNumber_of_beneficiaries(from.getNumber_of_beneficiaries());
-                to.setUser(from.getUser());
 	}
 }

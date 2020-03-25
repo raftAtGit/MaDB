@@ -52,7 +52,8 @@ public class Contact {
     @Size(max=100)
     private String functions;
     
-    @Size(max = 500)
+    @NotNull
+    @Size(max = 50)
     @Column(name = "USER")
     private String user;
 	

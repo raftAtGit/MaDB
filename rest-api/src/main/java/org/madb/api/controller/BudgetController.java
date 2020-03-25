@@ -70,7 +70,6 @@ class BudgetController {
 		// never copy project ID
 		to.setBudget(from.getBudget());
 		to.setFinancialYear(from.getFinancialYear());
-                to.setUser(from.getUser());
 	}
 
 }

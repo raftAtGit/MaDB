@@ -70,7 +70,7 @@ public class PartnershipController {
 	
 	private void copyPartnerships(Partnerships from, Partnerships to) {
 		// never copy project ID
-		
-                to.setUser(from.getUser());
+                to.setPartner(from.getPartner());
+                to.setPartnership_type(from.getPartnership_type());
 	}
 }

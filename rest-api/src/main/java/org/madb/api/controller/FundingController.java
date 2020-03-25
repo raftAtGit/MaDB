@@ -71,6 +71,5 @@ public class FundingController {
 	private void copyFunding(Funding from, Funding to) {
 		// never copy project ID
 		to.setFounding_source(from.getFounding_source());
-                to.setUser(from.getUser());
 	}
 }
