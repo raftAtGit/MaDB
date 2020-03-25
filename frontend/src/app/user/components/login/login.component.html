@@ -1,0 +1,37 @@
+<section id="intro">
+  <p>We hope you can all find this tool helpful to easily upload information on your ongoing projects and access a growing and evolving list of SOYEE activities across the Plan federation. The success of this tool really depends on all of us to contribute accurate, coherent and up to date information. It is and will remain a Work in Progress (WIP) for the foreseeable future. Feel free to share feedback! Thank you.</p>
+</section>
+
+<hr />
+
+<section id="login" *ngIf="form">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)" autocomplete="false">
+    <h2>Login</h2>
+    
+    <!-- User name -->
+    <mat-form-field class="form-item">
+      <mat-label for="username">Username</mat-label>
+      <input matInput name="username" formControlName="username">
+      <mat-error *ngIf="form.get('username').invalid">
+        Username is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Password -->
+    <mat-form-field class="form-item">
+      <mat-label for="password">Password</mat-label>
+      <input matInput type="password" name="password" formControlName="password">
+      <mat-error *ngIf="form.get('password').invalid">
+        Password is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Submit button -->
+    <div class="submit">
+      <button mat-button type="submit" color="accent" [disabled]="form.invalid">Login</button>
+    </div>
+
+  </form>
+
+</section>

@@ -5,14 +5,23 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+
 const MATERIAL_MODULES = [
   MatAutocompleteModule,
   MatButtonModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
   MatInputModule,
-  MatRadioModule
+  MatRadioModule,
+  MatSelectModule
 ];
+
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   exports: [
@@ -26,6 +35,9 @@ const MATERIAL_MODULES = [
     ReactiveFormsModule,
     RouterModule,
     ...MATERIAL_MODULES
+  ],
+  providers: [
+    AuthGuard
   ]
 })
 export class SharedModule {}

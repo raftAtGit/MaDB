@@ -2,21 +2,31 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ManageComponent, ProjectComponent, UserComponent } from './components';
+import { ManageComponent, ProjectComponent, LoginComponent } from './components';
+import { UserComponent } from './pages';
 import { SharedModule } from '../shared/shared.module';
+import { AuthGuard } from '../shared/guards/auth.guard';
 
 const ROUTES: Routes = [
   {
     path: '',
-    component: ManageComponent
-  },
-  {
-    path: 'user',
-    component: UserComponent
-  },
-  {
-    path: 'project',
-    component: ProjectComponent
+    component: UserComponent,
+    children: [
+      {
+        path: '',
+        component: LoginComponent
+      },
+      {
+        path: 'manage',
+        component: ManageComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'project',
+        component: ProjectComponent,
+        canActivate: [AuthGuard]
+      }
+    ]
   }
 ];
 
@@ -24,7 +34,8 @@ const ROUTES: Routes = [
   declarations: [
     UserComponent,
     ProjectComponent,
-    ManageComponent
+    ManageComponent,
+    LoginComponent
   ],
   imports: [
     CommonModule,

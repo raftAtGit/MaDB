@@ -1,3 +1,3 @@
 export * from './manage/manage.component';
 export * from './project/project.component';
-export * from './user/user.component';
+export * from './login/login.component';

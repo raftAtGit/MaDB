@@ -10,9 +10,13 @@ body {
   font-size: 1rem;
   line-height: 1.5rem;
 
-  h1 { font-size: 1.5rem; color: $primary; }
-  h2 { font-size: 1.2rem; color: $primary; }
-  h3 { font-size: 1rem; color: $primary; }
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1rem; }
+  h1, h2, h3 {
+    color: $accent;
+    text-transform: uppercase;
+  }
   p { margin: 0; }
   hr { color: lightgray; }
 }

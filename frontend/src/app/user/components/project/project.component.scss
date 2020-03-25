@@ -1,3 +1,5 @@
+@import "src/assets/styles/variables.scss";
+
 section#project {
   display: flex;
   flex-direction: column;
@@ -7,7 +9,7 @@ section#project {
     width: 80%;
     .form-item {
       display: block;
-      height: 64px;
+      min-height: 64px;
       width: 100%;
 
       .mat-radio-button:not(:first-child) {

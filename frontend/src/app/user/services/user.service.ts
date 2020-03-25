@@ -10,6 +10,13 @@ export class UserService {
 
   constructor() { }
 
+  getCountries(): Promise<any[]> {
+    const endPoint = 'v1/countries';
+    const url = `${environment.settings.api}/${endPoint}`;
+
+    return RequestLibrary.get(undefined, url);
+  }
+
   getProjects(): Promise<any[]> {
     const endPoint = 'v1/projects';
     const url = `${environment.settings.api}/${endPoint}`;
@@ -24,16 +31,22 @@ export class UserService {
     return RequestLibrary.get(undefined, url);
   }
 
-  setProjectData(projectData: any, type: string): Promise<any> {
-    const isNewProject = type === 'new';
+  setProjectData(projectData: any, isNewProject: boolean): Promise<any> {
     const endPoint = `v1/projects`;
     let url = `${environment.settings.api}/${endPoint}`;
+    delete projectData.isNewProject;
 
     if (isNewProject) {
-      return RequestLibrary.post(undefined, url, projectData);
+      return RequestLibrary.post(undefined, url, {
+        ...projectData,
+        budget: 0,
+        status: 'PENDING'
+      });
     } else {
-      url = `${url}/${projectData.projectId}`;
-      return RequestLibrary.put(undefined, url, projectData);
+      url = `${url}/${projectData.id}`;
+      return RequestLibrary.put(undefined, url, {
+        ...projectData
+      });
     }
   }
 

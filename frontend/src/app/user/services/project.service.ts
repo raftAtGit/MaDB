@@ -12,9 +12,12 @@ export class ProjectService {
 
   clear() {
     this.project = {
-      projectData: {},
-      userData: {}
+      projectData: {}
     };
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.project.username;
   }
 
   getProjectData() {
@@ -24,22 +27,14 @@ export class ProjectService {
   setProjectData(data: any) {
     this.project = {
       ...this.project,
-      projectData: {
-        projectId: data.projectId,
-        projectName: data.projectName
-      }
+      projectData: data
     };
   }
 
   setUserData(data: any) {
     this.project = {
       ...this.project,
-      userData: {
-        firstName: data.firstName,
-        lastName: data.lastName,
-        type: data.type,
-        projectId: data.projectId
-      }
+      username: data.username
     };
   }
 
