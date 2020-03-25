@@ -26,10 +26,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "FUNDING_SOURCES")
+@Table(name = "PARTNERSHIPS")
 
-public class Funding {
-    @Id 
+public class Partnerships {
+   @Id 
     @GeneratedValue 
     private Integer id;
 
@@ -40,12 +40,16 @@ public class Funding {
     
     @NotNull
     @Size(max=500)
-    @Column(name = "FUNDING_SOURCE")
-    private String founding_source;
+    @Column(name = "PARTNERSHIP_TYPE")
+    private String partnership_type;
+    
+    @NotNull
+    @Size(max=500)
+    @Column(name = "PARTNER")
+    private String partner;
     
     @NotNull
     @Size(max = 50)
     @Column(name = "USER")
-    private String user;
-    
+    private String user;   
 }

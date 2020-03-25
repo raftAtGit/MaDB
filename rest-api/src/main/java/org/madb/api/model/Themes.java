@@ -43,5 +43,8 @@ public class Themes {
     @Column(name = "THEME")
     private String theme;
     
-    
+    @NotNull
+    @Size(max = 50)
+    @Column(name = "USER")
+    private String user;  
 }
