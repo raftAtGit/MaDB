@@ -56,15 +56,15 @@ class ProjectController {
 	}
 	
 	private void copyProject(Project from, Project to) {
-		// skip project.status
-		to.setProjectId(from.getProjectId());
-		to.setName(from.getName());
-		to.setCountry(from.getCountry());
-		to.setStartDate(from.getStartDate());
-		to.setEndDate(from.getEndDate());
-		to.setBudget(from.getBudget());
-		to.setDescription(from.getDescription());
-		to.setObservations(from.getObservations());
+            // skip project.status
+            to.setProjectId(from.getProjectId());
+            to.setName(from.getName());
+            to.setCountry(from.getCountry());
+            to.setStartDate(from.getStartDate());
+            to.setEndDate(from.getEndDate());
+            to.setBudget(from.getBudget());
+            to.setDescription(from.getDescription());
+            to.setObservations(from.getObservations());
 	}
 
 }

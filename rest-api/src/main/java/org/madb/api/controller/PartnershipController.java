@@ -29,48 +29,48 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class PartnershipController {
     @Autowired
-	private ProjectRepository projectRepository;
+    private ProjectRepository projectRepository;
 
-	@Autowired
-	private PartnershipRepository partnershipRepository;
+    @Autowired
+    private PartnershipRepository partnershipRepository;
 
-	@GetMapping("/partnerships")
-	List<Partnerships> all(@RequestParam Integer projectId) {
-		return partnershipRepository.findByProjectId(projectId);
-	}
-	
-	@GetMapping("/partnerships/{id}")
-	Partnerships findById(@PathVariable Integer id) {
-	    return  partnershipRepository.findById(id)
-	      .orElseThrow(() -> new NotFoundException(id));
-	}
-	
-	@PostMapping("/partnerships")
-	Partnerships createPartnerships(@RequestParam Integer projectId, @RequestBody @Valid Partnerships newPartnerships) {
-        return projectRepository.findById(projectId).map(argPartnerships -> {
-        	newPartnerships.setProject(argPartnerships);
-            return partnershipRepository.save(newPartnerships);
-        }).orElseThrow(() -> new NotFoundException("project not found, id: " + projectId));
-	}
-	
-	@PutMapping("/partnerships/{id}")
-	   Partnerships updatePartnerships(@PathVariable Integer id, @RequestBody @Valid Partnerships newPartnerships) {
+    @GetMapping("/partnerships")
+    List<Partnerships> all(@RequestParam Integer projectId) {
+            return partnershipRepository.findByProjectId(projectId);
+    }
 
-	    return partnershipRepository.findById(id)
-	    	.map(argPartnerships -> {
-	    		copyPartnerships(newPartnerships, argPartnerships);
-	    		return partnershipRepository.save(argPartnerships);
-	    }).orElseThrow(() -> new NotFoundException(id));
-	}
-	
-	@DeleteMapping("/partnerships/{id}")
-	void deletePartnerships(@PathVariable Integer id) {
-		partnershipRepository.deleteById(id);
-	}
-	
-	private void copyPartnerships(Partnerships from, Partnerships to) {
-		// never copy project ID
-                to.setPartner(from.getPartner());
-                to.setPartnership_type(from.getPartnership_type());
-	}
+    @GetMapping("/partnerships/{id}")
+    Partnerships findById(@PathVariable Integer id) {
+        return  partnershipRepository.findById(id)
+          .orElseThrow(() -> new NotFoundException(id));
+    }
+
+    @PostMapping("/partnerships")
+    Partnerships createPartnerships(@RequestParam Integer projectId, @RequestBody @Valid Partnerships newPartnerships) {
+    return projectRepository.findById(projectId).map(argPartnerships -> {
+            newPartnerships.setProject(argPartnerships);
+        return partnershipRepository.save(newPartnerships);
+    }).orElseThrow(() -> new NotFoundException("project not found, id: " + projectId));
+    }
+
+    @PutMapping("/partnerships/{id}")
+       Partnerships updatePartnerships(@PathVariable Integer id, @RequestBody @Valid Partnerships newPartnerships) {
+
+        return partnershipRepository.findById(id)
+            .map(argPartnerships -> {
+                    copyPartnerships(newPartnerships, argPartnerships);
+                    return partnershipRepository.save(argPartnerships);
+        }).orElseThrow(() -> new NotFoundException(id));
+    }
+
+    @DeleteMapping("/partnerships/{id}")
+    void deletePartnerships(@PathVariable Integer id) {
+            partnershipRepository.deleteById(id);
+    }
+
+    private void copyPartnerships(Partnerships from, Partnerships to) {
+            // never copy project ID
+            to.setPartner(from.getPartner());
+            to.setPartnership_type(from.getPartnership_type());
+    }
 }
