@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.Column;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,19 +26,23 @@ import lombok.NoArgsConstructor;
 @Table(name = "FYBUDGETS")
 public class Budget {
 
-	@Id 
-	@GeneratedValue 
-	private Integer id;
+    @Id 
+    @GeneratedValue 
+    private Integer id;
 	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false)
-	@JoinColumn(name = "PROJECT_ID")
-	@JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "PROJECT_ID")
+    @JsonIgnore
     private Project project;
 	
-	@NotNull
+    @NotNull
     private String financialYear;
     
-	@NotNull
-	private BigDecimal budget;
+    @NotNull
+    private BigDecimal budget;
+    
+    @Size(max = 500)
+    @Column(name = "USER")
+    private String user;
 	
 }

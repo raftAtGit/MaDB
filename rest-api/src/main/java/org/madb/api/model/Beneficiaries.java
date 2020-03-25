@@ -53,4 +53,7 @@ public class Beneficiaries {
     @Column(name = "NUMBER_OF_BENEFICIARIES")
     private Integer number_of_beneficiaries;
     
+    @Size(max = 500)
+    @Column(name = "USER")
+    private String user;
 }

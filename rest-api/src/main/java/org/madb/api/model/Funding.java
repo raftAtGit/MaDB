@@ -43,5 +43,8 @@ public class Funding {
     @Column(name = "FUNDING_SOURCE")
     private String founding_source;
     
+    @Size(max = 500)
+	@Column(name = "USER")
+	private String user;
     
 }

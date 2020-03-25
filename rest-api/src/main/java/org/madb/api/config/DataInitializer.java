@@ -61,16 +61,16 @@ class DataInitializer {
 	    			"The project aims to enhance economic participation of young women and men aged 18-35, from marginalized areas of Cairo, Alexandria and Assuit in Egypt, and promote equal economic opportunities and decision making for young women. If youth have access to employability, entrepreneurship, relevant technical and innovative skills to access either wage or self-employment opportunities; and key stakeholders have the capacity and understanding to promote gender supportive work and business environment, then those youth will earn income and develop confidence, improving their long-term capabilities and economic status.", 
 	    			null,"DummyUser2")));
 	    	
-	    	log.info("Preloading " + budgetRepository.save(new Budget(null, project, "2019-2020", new BigDecimal(100000))));
+	    	log.info("Preloading " + budgetRepository.save(new Budget(null, project, "2019-2020", new BigDecimal(100000),"DummyUser2")));
                 
-	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Primary", "Paul", "Brown", "Account Manager")));
-	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Secondary", "Bob", "Smith", "Junior Account Manager")));
+	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Primary", "Paul", "Brown", "Account Manager","DummyUser2")));
+	    	log.info("Preloading " + contactRepository.save(new Contact(null, project, "Secondary", "Bob", "Smith", "Junior Account Manager","DummyUser2")));
                 
-                log.info("Preloading " + themeRepository.save(new Themes(null, project, "Digital")));
+                log.info("Preloading " + themeRepository.save(new Themes(null, project, "Digital","DummyUser2")));
                 
-                log.info("Preloading " + fundingRepository.save(new Funding(null, project, "Child sponsorship ")));
+                log.info("Preloading " + fundingRepository.save(new Funding(null, project, "Child sponsorship ","DummyUser2")));
                 
-                log.info("Preloading " + beneficiariesRepository.save(new Beneficiaries(null, project, "Male","2014",5)));
+                log.info("Preloading " + beneficiariesRepository.save(new Beneficiaries(null, project, "Male","2014",5,"DummyUser2")));
                 
 	    };
 	  }	

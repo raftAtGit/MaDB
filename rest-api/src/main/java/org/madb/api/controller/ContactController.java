@@ -71,6 +71,7 @@ class ContactController {
 		to.setFirstName(from.getFirstName());
 		to.setLastName(from.getLastName());
 		to.setFunctions(from.getFunctions());
+                to.setUser(from.getUser());
 	}
 
 }

@@ -71,5 +71,6 @@ public class ThemesController {
 	private void copyThemes(Themes from, Themes to) {
 		// never copy project ID
 		to.setTheme(from.getTheme());
+                to.setUser(from.getUser());
 	}
 }
