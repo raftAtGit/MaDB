@@ -43,7 +43,7 @@ public class Budget {
     
     @NotNull
     @Size(max = 50)
-    @Column(name = "USER")
+    @Column(name = "USER_NAME")
     private String user;
 	
 }
