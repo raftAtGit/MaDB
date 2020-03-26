@@ -6,19 +6,10 @@ section#project {
   align-items: center;
 
   form {
-    width: 80%;
     .form-item {
-      display: block;
-      min-height: 64px;
-      width: 100%;
-
       .mat-radio-button:not(:first-child) {
         margin-left: 24px;
       }
-    }
-    .submit {
-      margin-top: 24px;
-      text-align: right;
     }
   }
 }

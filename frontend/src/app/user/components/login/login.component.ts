@@ -1,9 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
-import { map, startWith, takeWhile } from 'rxjs/operators';
 
-import { ProjectService, UserService } from '../../services';
+import { ProjectService } from '../../services';
 import { Router } from '@angular/router';
 
 @Component({

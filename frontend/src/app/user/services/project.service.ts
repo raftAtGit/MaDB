@@ -4,20 +4,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class ProjectService {
-  private project: any;
+  private project: any = {};
 
-  constructor() {
-    this.clear();
-  }
+  constructor() { }
 
   clear() {
-    this.project = {
-      projectData: {}
-    };
+    this.project = {};
   }
 
   isLoggedIn(): boolean {
     return !!this.project.username;
+  }
+
+  selectedProject(): any {
+    return this.project.projectData;
   }
 
   getProjectData() {
@@ -28,6 +28,27 @@ export class ProjectService {
     this.project = {
       ...this.project,
       projectData: data
+    };
+  }
+
+  setThemeData(data: any) {
+    this.project = {
+      ...this.project,
+      themeData: data
+    };
+  }
+
+  setFundingData(data: any) {
+    this.project = {
+      ...this.project,
+      fundingData: data
+    };
+  }
+
+  setBudgetData(data: any) {
+    this.project = {
+      ...this.project,
+      budgetData: data
     };
   }
 

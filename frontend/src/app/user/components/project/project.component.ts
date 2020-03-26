@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map, startWith, takeWhile } from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
 
 import { ProjectService, UserService } from '../../services';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-project',
@@ -20,6 +20,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   constructor(
     private formBuilder: FormBuilder,
+    private router: Router,
     private projectService: ProjectService,
     private userService: UserService
   ) { }
@@ -34,8 +35,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
       country: [null, [Validators.required]],
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
-      observations: [null, [Validators.required]],
-      description: [null, [Validators.required]],
+      summary: [null, [Validators.required]],
+      comments: [null],
       budget: [null],
       status: [null]
     });
@@ -68,24 +69,23 @@ export class ProjectComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: FormGroup) {
-    console.log('form value', form.value);
     if (form.invalid) {
       return;
     }
 
-    const { username, projectData } = this.projectService.getProjectData();
+    const projectData = this.projectService.getProjectData();
     const data = {
       ...form.value,
       country: {
         id: form.value.country
       },
-      id: projectData.id,
-      user: username
+      id: projectData && projectData.projectData ? projectData.projectData.id : null,
+      user: projectData ? projectData.username : null
     };
     this.userService.setProjectData(data, form.get('isNewProject').value)
       .then(() => {
-        console.log('posted project');
         this.projectService.setProjectData(form.value);
+        this.router.navigate(['theme']);
       })
       .catch((error) => {
         console.error(error);
@@ -100,6 +100,11 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   getProjectData(projectId) {
     if (this.form.get('isNewProject').value) {
+      return;
+    }
+
+    const doesProjectExist = this.projects.find(project => project.projectId === projectId);
+    if (!doesProjectExist) {
       return;
     }
 

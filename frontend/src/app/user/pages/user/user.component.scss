@@ -14,6 +14,8 @@
       display: flex;
       justify-content: space-between;
 
+      > div { display: flex; }
+
       li {
         display: inline-block;
         font-weight: bold;

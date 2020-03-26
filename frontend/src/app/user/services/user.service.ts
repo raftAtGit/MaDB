@@ -50,4 +50,22 @@ export class UserService {
     }
   }
 
+  setThemeData(data: any, projectId: number): Promise<any> {
+    const endPoint = `v1/themes`;
+    const url = `${environment.settings.api}/${endPoint}`;
+    return RequestLibrary.post(undefined, url, data, { projectId });
+  }
+
+  setFundingData(data: any, projectId: number): Promise<any> {
+    const endPoint = `v1/fundings`;
+    const url = `${environment.settings.api}/${endPoint}`;
+    return RequestLibrary.post(undefined, url, data, { projectId });
+  }
+
+  setBudgetData(data: any, projectId: number): Promise<any> {
+    const endPoint = `v1/budgets`;
+    const url = `${environment.settings.api}/${endPoint}`;
+    return RequestLibrary.post(undefined, url, data, { projectId });
+  }
+
 }

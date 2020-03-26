@@ -11,7 +11,7 @@
           New project
         </mat-radio-button>
         <mat-radio-button [value]="false" [disabled]="!projects || !projects.length">
-          Existing project
+          Existing project (Select Project ID from list)
         </mat-radio-button>
       </mat-radio-group>
     </div>
@@ -23,10 +23,10 @@
         [matAutocomplete]="auto"
         name="projectId"
         formControlName="projectId"
-        (blur)="getProjectData(projectId.value)">
+        (input)="getProjectData(projectId.value)">
       <mat-autocomplete #auto>
         <ng-container *ngIf="!form.get('isNewProject').value && projects">
-          <mat-option *ngFor="let project of filteredProjects | async" [value]="project.projectId">
+          <mat-option *ngFor="let project of filteredProjects | async" [value]="project.projectId" (click)="getProjectData(project.projectId)">
             <span>{{project.projectId}}</span> |
             <small>{{project.name}}</small>
           </mat-option>
@@ -90,22 +90,19 @@
       </mat-error>
     </mat-form-field>
     
-    <!-- Observations -->
+    <!-- Summary -->
     <mat-form-field class="form-item">
-      <mat-label for="observations">Observations</mat-label>
-      <input matInput name="observations" formControlName="observations">
-      <mat-error *ngIf="form.get('observations').invalid">
-        Observations is <strong>required</strong>
+      <mat-label for="summary">Summary</mat-label>
+      <textarea matInput name="summary" formControlName="summary" matTextareaAutosize></textarea>
+      <mat-error *ngIf="form.get('summary').invalid">
+        Summary is <strong>required</strong>
       </mat-error>
     </mat-form-field>
     
-    <!-- Description -->
+    <!-- Comments -->
     <mat-form-field class="form-item">
-      <mat-label for="description">Description</mat-label>
-      <textarea matInput name="description" formControlName="description" matTextareaAutosize></textarea>
-      <mat-error *ngIf="form.get('description').invalid">
-        Description is <strong>required</strong>
-      </mat-error>
+      <mat-label for="comments">Comments</mat-label>
+      <textarea matInput name="comments" formControlName="comments" matTextareaAutosize></textarea>
     </mat-form-field>
 
     <!-- Submit button -->

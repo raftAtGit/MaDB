@@ -1,0 +1,28 @@
+<section id="budget" *ngIf="form">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)" autocomplete="false">
+    <h2>Budget</h2>
+
+    <!-- Project name -->
+    <mat-form-field class="form-item">
+      <mat-label for="name">Project name</mat-label>
+      <input matInput name="name" [value]="projectService?.selectedProject()?.name" readonly>
+    </mat-form-field>
+
+    <!-- Budget -->
+    <mat-form-field class="form-item">
+      <mat-label for="budget">Budget</mat-label>
+      <input matInput type="number" name="budget" formControlName="budget">
+      <mat-error *ngIf="form.get('budget').invalid">
+        Budget is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Submit button -->
+    <div class="submit">
+      <button mat-button type="submit" color="accent" [disabled]="form.invalid">Next</button>
+    </div>
+
+  </form>
+
+</section>

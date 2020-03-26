@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ProjectService } from '../../services';
+
 @Component({
   selector: 'app-manage',
   templateUrl: './manage.component.html',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public projectService: ProjectService
+  ) { }
 
   ngOnInit(): void {}
 }

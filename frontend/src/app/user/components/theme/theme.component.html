@@ -1,0 +1,33 @@
+<section id="theme" *ngIf="form">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)" autocomplete="false">
+    <h2>Theme</h2>
+
+    <!-- Project name -->
+    <mat-form-field class="form-item">
+      <mat-label for="name">Project name</mat-label>
+      <input matInput name="name" [value]="projectService?.selectedProject()?.name" readonly>
+    </mat-form-field>
+    
+    <!-- Project theme -->
+    <div class="form-item">
+      <mat-label for="theme">Themes</mat-label>
+      <mat-selection-list #list name="theme" formControlName="theme">
+        <mat-list-option #option *ngFor="let theme of themes" [value]="theme"
+          [disabled]="list.selectedOptions.selected.length > 2 && !option.selected">
+          {{theme}}
+        </mat-list-option>
+      </mat-selection-list>
+      <mat-error *ngIf="form.get('theme').invalid">
+        Themes are <strong>required</strong>
+      </mat-error>
+    </div>
+
+    <!-- Submit button -->
+    <div class="submit">
+      <button mat-button type="submit" color="accent" [disabled]="form.invalid">Next</button>
+    </div>
+
+  </form>
+
+</section>

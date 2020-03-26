@@ -12,7 +12,7 @@ export class UserComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private projectService: ProjectService
+    public projectService: ProjectService
   ) { }
 
   ngOnInit(): void {}

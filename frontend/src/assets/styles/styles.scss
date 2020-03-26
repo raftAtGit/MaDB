@@ -40,3 +40,18 @@ body {
 * [class^='mat-']:not(.mat-icon), * [class*='mat']:not(.mat-icon) {
   font-family: $font-family;
 }
+
+
+/* FORMS */
+form {
+  width: 80%;
+  .form-item {
+    display: block;
+    min-height: 64px;
+    width: 100%;
+  }
+  .submit {
+    margin-top: 24px;
+    text-align: right;
+  }
+}
