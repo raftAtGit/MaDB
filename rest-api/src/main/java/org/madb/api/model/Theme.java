@@ -28,7 +28,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Table(name = "THEMES")
 
-public class Themes {
+public class Theme {
     @Id 
     @GeneratedValue 
     private Integer id;

@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import org.madb.api.controller.exception.NotFoundException;
 import org.madb.api.jpa.PartnershipRepository;
 import org.madb.api.jpa.ProjectRepository;
-import org.madb.api.model.Partnerships;
+import org.madb.api.model.Partnership;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,18 +35,18 @@ public class PartnershipController {
     private PartnershipRepository partnershipRepository;
 
     @GetMapping("/partnerships")
-    List<Partnerships> all(@RequestParam Integer projectId) {
+    List<Partnership> all(@RequestParam Integer projectId) {
             return partnershipRepository.findByProjectId(projectId);
     }
 
     @GetMapping("/partnerships/{id}")
-    Partnerships findById(@PathVariable Integer id) {
+    Partnership findById(@PathVariable Integer id) {
         return  partnershipRepository.findById(id)
           .orElseThrow(() -> new NotFoundException(id));
     }
 
     @PostMapping("/partnerships")
-    Partnerships createPartnerships(@RequestParam Integer projectId, @RequestBody @Valid Partnerships newPartnerships) {
+    Partnership createPartnerships(@RequestParam Integer projectId, @RequestBody @Valid Partnership newPartnerships) {
     return projectRepository.findById(projectId).map(argPartnerships -> {
             newPartnerships.setProject(argPartnerships);
         return partnershipRepository.save(newPartnerships);
@@ -54,7 +54,7 @@ public class PartnershipController {
     }
 
     @PutMapping("/partnerships/{id}")
-       Partnerships updatePartnerships(@PathVariable Integer id, @RequestBody @Valid Partnerships newPartnerships) {
+       Partnership updatePartnerships(@PathVariable Integer id, @RequestBody @Valid Partnership newPartnerships) {
 
         return partnershipRepository.findById(id)
             .map(argPartnerships -> {
@@ -68,7 +68,7 @@ public class PartnershipController {
             partnershipRepository.deleteById(id);
     }
 
-    private void copyPartnerships(Partnerships from, Partnerships to) {
+    private void copyPartnerships(Partnership from, Partnership to) {
             // never copy project ID
             to.setPartner(from.getPartner());
             to.setPartnership_type(from.getPartnership_type());

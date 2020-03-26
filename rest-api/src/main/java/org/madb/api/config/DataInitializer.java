@@ -9,17 +9,17 @@ import org.madb.api.jpa.ContactRepository;
 import org.madb.api.jpa.CountryRepository;
 import org.madb.api.jpa.ProjectRepository;
 import org.madb.api.jpa.FundingRepository;
-import org.madb.api.jpa.BeneficiariesRepository;
+import org.madb.api.jpa.BeneficiaryRepository;
 import org.madb.api.jpa.ThemeRepository;
 import org.madb.api.jpa.PartnershipRepository;
 import org.madb.api.model.Budget;
 import org.madb.api.model.Contact;
 import org.madb.api.model.Country;
 import org.madb.api.model.Project;
-import org.madb.api.model.Beneficiaries;
+import org.madb.api.model.Beneficiary;
 import org.madb.api.model.Funding;
-import org.madb.api.model.Themes;
-import org.madb.api.model.Partnerships;
+import org.madb.api.model.Theme;
+import org.madb.api.model.Partnership;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -52,7 +52,7 @@ class DataInitializer {
 	private FundingRepository fundingRepository;
         
     @Autowired
-	private BeneficiariesRepository beneficiariesRepository;
+	private BeneficiaryRepository beneficiariesRepository;
         
     @Autowired
 	private ThemeRepository themeRepository;
@@ -93,10 +93,10 @@ class DataInitializer {
 	    	log.info("Preloading " + contactRepository.save(new Contact(NO_ID, project, "Primary", "Paul", "Brown", "Burkina Faso", "paul@nowhere.com", "Account Manager", "DummyUser1")));
 	    	log.info("Preloading " + contactRepository.save(new Contact(NO_ID, project, "Secondary", "Bob", "Smith", "Burkina Faso", "bob@somewhere,org", "Junior Account Manager", "DummyUser1")));
 	    	
-	        log.info("Preloading " + themeRepository.save(new Themes(NO_ID, project, "Digital", "DummyUser1")));
+	        log.info("Preloading " + themeRepository.save(new Theme(NO_ID, project, "Digital", "DummyUser1")));
 	        log.info("Preloading " + fundingRepository.save(new Funding(NO_ID, project, "Child sponsorship", "DummyUser1")));        
-	        log.info("Preloading " + beneficiariesRepository.save(new Beneficiaries(NO_ID, project, "Male", "2014", 5, "DummyUser1"))); 
-	        log.info("Preloading " + partnershipRepository.save(new Partnerships(NO_ID, project, "Private Sector", "French companies in Egypt", "DummyUser1")));
+	        log.info("Preloading " + beneficiariesRepository.save(new Beneficiary(NO_ID, project, "Male", "2014", 5, "DummyUser1"))); 
+	        log.info("Preloading " + partnershipRepository.save(new Partnership(NO_ID, project, "Private Sector", "French companies in Egypt", "DummyUser1")));
 	    };
 	}	
 

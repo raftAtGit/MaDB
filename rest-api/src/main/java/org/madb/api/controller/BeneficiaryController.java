@@ -8,9 +8,9 @@ import javax.validation.Valid;
  * @author hirad.emamialagha
  */
 import org.madb.api.controller.exception.NotFoundException;
-import org.madb.api.jpa.BeneficiariesRepository;
+import org.madb.api.jpa.BeneficiaryRepository;
 import org.madb.api.jpa.ProjectRepository;
-import org.madb.api.model.Beneficiaries;
+import org.madb.api.model.Beneficiary;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,26 +27,26 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1")
 @Validated
 
-public class BeneficiariesController {
+public class BeneficiaryController {
     @Autowired
 	private ProjectRepository projectRepository;
 
 	@Autowired
-	private BeneficiariesRepository beneficiariesRepository;
+	private BeneficiaryRepository beneficiariesRepository;
 
 	@GetMapping("/beneficiaries")
-	List<Beneficiaries> all(@RequestParam Integer projectId) {
+	List<Beneficiary> all(@RequestParam Integer projectId) {
 		return beneficiariesRepository.findByProjectId(projectId);
 	}
 	
 	@GetMapping("/beneficiaries/{id}")
-	Beneficiaries findById(@PathVariable Integer id) {
+	Beneficiary findById(@PathVariable Integer id) {
 	    return  beneficiariesRepository.findById(id)
 	      .orElseThrow(() -> new NotFoundException(id));
 	}
 	
 	@PostMapping("/beneficiaries")
-	Beneficiaries createBeneficiaries(@RequestParam Integer projectId, @RequestBody @Valid Beneficiaries newbeneficiary) {
+	Beneficiary createBeneficiaries(@RequestParam Integer projectId, @RequestBody @Valid Beneficiary newbeneficiary) {
         return projectRepository.findById(projectId).map(beneficiary -> {
         	newbeneficiary.setProject(beneficiary);
             return beneficiariesRepository.save(newbeneficiary);
@@ -54,7 +54,7 @@ public class BeneficiariesController {
 	}
 	
 	@PutMapping("/beneficiaries/{id}")
-	   Beneficiaries updateBeneficiaries(@PathVariable Integer id, @RequestBody @Valid Beneficiaries newBeneficiaries) {
+	   Beneficiary updateBeneficiaries(@PathVariable Integer id, @RequestBody @Valid Beneficiary newBeneficiaries) {
 
 	    return beneficiariesRepository.findById(id)
 	    	.map(beneficiary -> {
@@ -68,7 +68,7 @@ public class BeneficiariesController {
 		beneficiariesRepository.deleteById(id);
 	}
 	
-	private void copyBeneficiaries(Beneficiaries from, Beneficiaries to) {
+	private void copyBeneficiaries(Beneficiary from, Beneficiary to) {
 		// never copy project ID
 		to.setFinancial_year(from.getFinancial_year());
                 to.setGender(from.getGender());

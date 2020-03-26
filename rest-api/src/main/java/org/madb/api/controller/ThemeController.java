@@ -10,7 +10,7 @@ import javax.validation.Valid;
 import org.madb.api.controller.exception.NotFoundException;
 import org.madb.api.jpa.ThemeRepository;
 import org.madb.api.jpa.ProjectRepository;
-import org.madb.api.model.Themes;
+import org.madb.api.model.Theme;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v1")
 @Validated
 
-public class ThemesController {
+public class ThemeController {
     @Autowired
 	private ProjectRepository projectRepository;
 
@@ -35,18 +35,18 @@ public class ThemesController {
 	private ThemeRepository themeRepository;
 
 	@GetMapping("/themes")
-	List<Themes> all(@RequestParam Integer projectId) {
+	List<Theme> all(@RequestParam Integer projectId) {
 		return themeRepository.findByProjectId(projectId);
 	}
 	
 	@GetMapping("/themes/{id}")
-	Themes findById(@PathVariable Integer id) {
+	Theme findById(@PathVariable Integer id) {
 	    return  themeRepository.findById(id)
 	      .orElseThrow(() -> new NotFoundException(id));
 	}
 	
 	@PostMapping("/themes")
-	Themes createThemes(@RequestParam Integer projectId, @RequestBody @Valid Themes newtheme) {
+	Theme createThemes(@RequestParam Integer projectId, @RequestBody @Valid Theme newtheme) {
         return projectRepository.findById(projectId).map(theme -> {
         	newtheme.setProject(theme);
             return themeRepository.save(newtheme);
@@ -54,7 +54,7 @@ public class ThemesController {
 	}
 	
 	@PutMapping("/themes/{id}")
-	   Themes updateThemes(@PathVariable Integer id, @RequestBody @Valid Themes newTheme) {
+	   Theme updateThemes(@PathVariable Integer id, @RequestBody @Valid Theme newTheme) {
 
 	    return themeRepository.findById(id)
 	    	.map(theme -> {
@@ -68,7 +68,7 @@ public class ThemesController {
 		themeRepository.deleteById(id);
 	}
 	
-	private void copyThemes(Themes from, Themes to) {
+	private void copyThemes(Theme from, Theme to) {
 		// never copy project ID
 		to.setTheme(from.getTheme());
 	}
