@@ -85,11 +85,14 @@ export class ProjectComponent implements OnInit, OnDestroy {
       user: projectData ? projectData.username : null
     };
     this.userService.setProjectData(data, form.get('isNewProject').value)
-      .then(() => {
+      .then((project) => {
         this.snackBar.open('Successfully uploaded project data.', 'Ok', {
           duration: 3000
         });
-        this.projectService.setProjectData(form.value);
+        this.projectService.setProjectData({
+          ...form.value,
+          id: project ? project.id : null
+        });
         this.router.navigate(['theme']);
       })
       .catch((error) => {
