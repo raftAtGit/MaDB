@@ -34,18 +34,18 @@ public class FundingController {
 	@Autowired
 	private FundingRepository fundingRepository;
 
-	@GetMapping("/funding")
+	@GetMapping("/fundings")
 	List<Funding> all(@RequestParam Integer projectId) {
 		return fundingRepository.findByProjectId(projectId);
 	}
 	
-	@GetMapping("/funding/{id}")
+	@GetMapping("/fundings/{id}")
 	Funding findById(@PathVariable Integer id) {
 	    return fundingRepository.findById(id)
 	      .orElseThrow(() -> new NotFoundException(id));
 	}
 	
-	@PostMapping("/funding")
+	@PostMapping("/fundings")
 	Funding createFunding(@RequestParam Integer projectId, @RequestBody @Valid Funding newFunding) {
         return projectRepository.findById(projectId).map(project -> {
         	newFunding.setProject(project);
@@ -53,7 +53,7 @@ public class FundingController {
         }).orElseThrow(() -> new NotFoundException("project not found, id: " + projectId));
 	}
 	
-	@PutMapping("/funding/{id}")
+	@PutMapping("/fundings/{id}")
 	   Funding updateFunding(@PathVariable Integer id, @RequestBody @Valid Funding newFunding) {
 
 	    return fundingRepository.findById(id)
@@ -63,13 +63,13 @@ public class FundingController {
 	    }).orElseThrow(() -> new NotFoundException(id));
 	}
 	
-	@DeleteMapping("/funding/{id}")
+	@DeleteMapping("/fundings/{id}")
 	void deleteFunding(@PathVariable Integer id) {
 		fundingRepository.deleteById(id);
 	}
 	
 	private void copyFunding(Funding from, Funding to) {
 		// never copy project ID
-		to.setFounding_source(from.getFounding_source());
+		to.setFundingSource(from.getFundingSource());
 	}
 }

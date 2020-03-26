@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,7 +42,8 @@ public class Funding {
     @NotNull
     @Size(max=500)
     @Column(name = "FUNDING_SOURCE")
-    private String founding_source;
+    @JsonProperty("funding_source")
+    private String fundingSource;
     
     @NotNull
     @Size(max = 50)
