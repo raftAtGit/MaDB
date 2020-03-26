@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
@@ -21,6 +22,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
+    private snackBar: MatSnackBar,
     private projectService: ProjectService,
     private userService: UserService
   ) { }
@@ -84,10 +86,16 @@ export class ProjectComponent implements OnInit, OnDestroy {
     };
     this.userService.setProjectData(data, form.get('isNewProject').value)
       .then(() => {
+        this.snackBar.open('Successfully uploaded project data.', 'Ok', {
+          duration: 3000
+        });
         this.projectService.setProjectData(form.value);
         this.router.navigate(['theme']);
       })
       .catch((error) => {
+        this.snackBar.open('Failed to upload project data.', 'Ok', {
+          duration: 5000
+        });
         console.error(error);
       });
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ProjectService, UserService } from '../../services';
 import { Router } from '@angular/router';
@@ -16,7 +17,8 @@ export class FundingComponent implements OnInit {
     private router: Router,
     private formBuilder: FormBuilder,
     private userService: UserService,
-    public projectService: ProjectService
+    public projectService: ProjectService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -38,10 +40,16 @@ export class FundingComponent implements OnInit {
     };
     this.userService.setFundingData(data, projectData && projectData.projectData ? projectData.projectData.id : null)
       .then(() => {
+        this.snackBar.open('Successfully uploaded funding data.', 'Ok', {
+          duration: 3000
+        });
         this.projectService.setFundingData(form.value);
         this.router.navigate(['budget']);
       })
       .catch((error) => {
+        this.snackBar.open('Failed to upload funding data.', 'Ok', {
+          duration: 5000
+        });
         console.error(error);
       });
   }
