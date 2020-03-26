@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { ProjectService, UserService } from '../../services';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-theme',
@@ -28,9 +27,10 @@ export class ThemeComponent implements OnInit {
     'YEEiE',
     'Youth Savings Groups'
   ];
+  displayedColumns: string[] = ['theme', 'addedBy', 'action'];
+  dataSource = [];
 
   constructor(
-    private router: Router,
     private formBuilder: FormBuilder,
     private userService: UserService,
     public projectService: ProjectService,
@@ -41,6 +41,15 @@ export class ThemeComponent implements OnInit {
     this.form = this.formBuilder.group({
       theme: [null, [Validators.required]]
     });
+
+    const projectData = this.projectService.getProjectData();
+    this.userService.get('themes', projectData && projectData.projectData ? projectData.projectData.id : null)
+      .then((themes) => {
+        this.dataSource = themes;
+      })
+      .catch((error) => {
+        console.error(error.message);
+      });
   }
 
   onSubmit(form: FormGroup) {
@@ -50,23 +59,39 @@ export class ThemeComponent implements OnInit {
 
     const projectData = this.projectService.getProjectData();
     const data = {
-      theme: form.get('theme').value.join(','),
+      theme: form.get('theme').value,
       id: projectData && projectData.projectData ? projectData.projectData.id : null,
       user: projectData ? projectData.username : null
     };
-    this.userService.setThemeData(data, projectData && projectData.projectData ? projectData.projectData.id : null)
-      .then(() => {
-        this.snackBar.open('Successfully uploaded theme data.', 'Ok', {
+    this.userService.post('themes', data, projectData && projectData.projectData ? projectData.projectData.id : null)
+      .then((theme) => {
+        this.dataSource.push(theme);
+        this.snackBar.open('Successfully added theme.', 'Ok', {
           duration: 3000
         });
         this.projectService.setThemeData(data.theme);
-        this.router.navigate(['funding']);
       })
       .catch((error) => {
-        this.snackBar.open('Failed to upload theme data.', 'Ok', {
+        this.snackBar.open('Failed to add theme.', 'Ok', {
           duration: 5000
         });
-        console.error(error);
+        console.error(error.message);
+      });
+  }
+
+  remove(theme: any) {
+    this.userService.delete('themes', theme.id)
+      .then(() => {
+        this.snackBar.open('Successfully removed theme.', 'Ok', {
+          duration: 3000
+        });
+        this.dataSource = this.dataSource.filter(data => data.id !== theme.id);
+      })
+      .catch((error) => {
+        this.snackBar.open('Failed to remove theme.', 'Ok', {
+          duration: 5000
+        });
+        console.error(error.message);
       });
   }
 

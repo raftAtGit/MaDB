@@ -35,6 +35,9 @@ export class RequestLibrary {
         return response.json();
       })
       .catch((error) => {
+        if (error.message === 'Unexpected end of JSON input') {
+          return Promise.resolve({});
+        }
         return Promise.reject(error);
       });
   }
@@ -87,6 +90,22 @@ export class RequestLibrary {
 
     // Create request
     return this.fetch(url, 'PUT', body, token);
+  }
+
+  /**
+   * @description Creating a DELETE-request, returning JSON.
+   * @param token Token for authorization.
+   * @param url Complete url (excl. parameters) for the POST-request.
+   * @param parameters Object of parameters in key value pairs.
+   */
+  static delete(token: string, url: string, parameters?: object): Promise<any> {
+    // Construct URL including parameters
+    if (parameters) {
+      url += `?${this.getUrlParameters(parameters)}`;
+    }
+
+    // Create request
+    return this.fetch(url, 'DELETE', undefined, token);
   }
 
 }

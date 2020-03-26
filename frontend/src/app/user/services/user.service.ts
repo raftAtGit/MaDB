@@ -10,27 +10,6 @@ export class UserService {
 
   constructor() { }
 
-  getCountries(): Promise<any[]> {
-    const endPoint = 'v1/countries';
-    const url = `${environment.settings.api}/${endPoint}`;
-
-    return RequestLibrary.get(undefined, url);
-  }
-
-  getProjects(): Promise<any[]> {
-    const endPoint = 'v1/projects';
-    const url = `${environment.settings.api}/${endPoint}`;
-
-    return RequestLibrary.get(undefined, url);
-  }
-
-  getProjectData(projectId: string): Promise<any> {
-    const endPoint = `v1/projects/${projectId}`;
-    const url = `${environment.settings.api}/${endPoint}`;
-
-    return RequestLibrary.get(undefined, url);
-  }
-
   setProjectData(projectData: any, isNewProject: boolean): Promise<any> {
     const endPoint = `v1/projects`;
     let url = `${environment.settings.api}/${endPoint}`;
@@ -50,22 +29,34 @@ export class UserService {
     }
   }
 
-  setThemeData(data: any, projectId: number): Promise<any> {
-    const endPoint = `v1/themes`;
+  post(controller: string, data: any, projectId: number): Promise<any> {
+    const endPoint = `v1/${controller}`;
     const url = `${environment.settings.api}/${endPoint}`;
     return RequestLibrary.post(undefined, url, data, { projectId });
   }
 
-  setFundingData(data: any, projectId: number): Promise<any> {
-    const endPoint = `v1/fundings`;
+  get(controller: string, projectId: number): Promise<any> {
+    const endPoint = `v1/${controller}`;
     const url = `${environment.settings.api}/${endPoint}`;
-    return RequestLibrary.post(undefined, url, data, { projectId });
+    return RequestLibrary.get(undefined, url, { projectId });
   }
 
-  setBudgetData(data: any, projectId: number): Promise<any> {
-    const endPoint = `v1/budgets`;
+  getAll(controller: string): Promise<any> {
+    const endPoint = `v1/${controller}`;
     const url = `${environment.settings.api}/${endPoint}`;
-    return RequestLibrary.post(undefined, url, data, { projectId });
+    return RequestLibrary.get(undefined, url);
+  }
+
+  getProject(controller: string, projectId: number): Promise<any> {
+    const endPoint = `v1/${controller}/${projectId}`;
+    const url = `${environment.settings.api}/${endPoint}`;
+    return RequestLibrary.get(undefined, url);
+  }
+
+  delete(controller: string, id: number): Promise<any> {
+    const endPoint = `v1/${controller}/${id}`;
+    const url = `${environment.settings.api}/${endPoint}`;
+    return RequestLibrary.delete(undefined, url);
   }
 
 }

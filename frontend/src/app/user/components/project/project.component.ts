@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -12,8 +12,7 @@ import { ProjectService, UserService } from '../../services';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit, OnDestroy {
-  private isComponentActive: boolean;
+export class ProjectComponent implements OnInit {
   form: FormGroup;
   projects: any[];
   filteredProjects: Observable<any[]>;
@@ -28,8 +27,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.isComponentActive = true;
-
     this.form = this.formBuilder.group({
       isNewProject: [true, [Validators.required]],
       projectId: [null, [Validators.required]],
@@ -49,25 +46,21 @@ export class ProjectComponent implements OnInit, OnDestroy {
         map(value => this._filter(value))
       );
 
-    this.userService.getCountries()
+    this.userService.getAll('countries')
       .then((countries) => {
         this.countries = countries;
       })
       .catch((error) => {
-        console.error(`ERROR in getCountries: ${error.message}`);
+        console.error(error.message);
       });
 
-    this.userService.getProjects()
+    this.userService.getAll('projects')
       .then((projects) => {
         this.projects = projects;
       })
       .catch((error) => {
-        console.error(`ERROR in getProjects: ${error.message}`);
+        console.error(error.message);
       });
-  }
-
-  ngOnDestroy() {
-    this.isComponentActive = false;
   }
 
   onSubmit(form: FormGroup) {
@@ -93,13 +86,13 @@ export class ProjectComponent implements OnInit, OnDestroy {
           ...form.value,
           id: project ? project.id : null
         });
-        this.router.navigate(['theme']);
+        this.router.navigate(['manage']);
       })
       .catch((error) => {
         this.snackBar.open('Failed to upload project data.', 'Ok', {
           duration: 5000
         });
-        console.error(error);
+        console.error(error.message);
       });
   }
 
@@ -121,9 +114,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
     const selectedProject = this.projects.find(project => project.projectId === projectId);
     if (!selectedProject) { return; }
-    this.userService.getProjectData(selectedProject.id)
+    this.userService.getProject('projects', selectedProject.id)
       .then((project) => {
-        console.log('projectData', project);
         this.projectService.setProjectData(project);
         this.form.patchValue({
           ...project,
@@ -131,7 +123,10 @@ export class ProjectComponent implements OnInit, OnDestroy {
         });
       })
       .catch((error) => {
-        console.error(error);
+        this.snackBar.open('Failed to retrieve project data.', 'Ok', {
+          duration: 5000
+        });
+        console.error(error.message);
       });
   }
 

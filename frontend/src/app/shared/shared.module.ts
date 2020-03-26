@@ -12,6 +12,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
 
 const MATERIAL_MODULES = [
   MatAutocompleteModule,
@@ -22,7 +23,8 @@ const MATERIAL_MODULES = [
   MatListModule,
   MatRadioModule,
   MatSelectModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTableModule
 ];
 
 import { AuthGuard } from './guards/auth.guard';
