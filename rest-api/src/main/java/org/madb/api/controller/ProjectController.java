@@ -80,8 +80,8 @@ class ProjectController {
             to.setStartDate(from.getStartDate());
             to.setEndDate(from.getEndDate());
             to.setBudget(from.getBudget());
-            to.setDescription(from.getDescription());
-            to.setObservations(from.getObservations());
+            to.setSummary(from.getSummary());
+            to.setComments(from.getComments());
 	}
 
 }

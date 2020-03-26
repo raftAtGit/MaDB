@@ -70,6 +70,8 @@ class ContactController {
 		to.setType(from.getType());
 		to.setFirstName(from.getFirstName());
 		to.setLastName(from.getLastName());
+		to.setCountry(from.getCountry());
+		to.setEmail(from.getEmail());
 		to.setFunctions(from.getFunctions());
 	}
 

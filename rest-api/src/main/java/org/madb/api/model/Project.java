@@ -47,7 +47,7 @@ public class Project {
 	
 	
 	@NotNull
-	@Size(max = 100)
+	@Size(max = 250)
 	@Column(name = "NAME_OF_PROJECT")
 	private String name;
 	
@@ -64,14 +64,12 @@ public class Project {
 	private BigDecimal budget;
 	
 	@NotNull
-	@Size(max = 1024)
-	@Column(name = "SUMMARY_DESCRIPTION")
-	private String description;
-	
-	@Size(max = 200)
-	@Column(name = "OBSERVATIONS")
-	private String observations;
+	@Size(max = 1000)
+	private String summary;
         
+	@Size(max = 1000)
+	private String comments;
+	
     @NotNull
     @Size(max = 50)
 	@Column(name = "USER_NAME")

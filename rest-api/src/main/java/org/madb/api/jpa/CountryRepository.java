@@ -8,4 +8,5 @@ public interface CountryRepository extends JpaRepository<Country, Integer> {
 	// TODO make case insensitive 
 	boolean existsByName(String name);
 	
+	Country findByName(String name);
 }

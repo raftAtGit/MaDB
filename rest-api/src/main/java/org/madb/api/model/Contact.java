@@ -49,6 +49,14 @@ public class Contact {
     private String lastName;
 
     @NotNull
+    @Size(max=50)
+    private String country;
+    
+    @NotNull
+    @Size(max=100)
+    private String email;
+    
+    @NotNull
     @Size(max=100)
     private String functions;
     
