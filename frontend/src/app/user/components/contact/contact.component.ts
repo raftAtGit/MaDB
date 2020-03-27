@@ -6,13 +6,13 @@ import { MatTable } from '@angular/material/table';
 import { ProjectService, UserService } from '../../services';
 
 @Component({
-  selector: 'app-funding',
-  templateUrl: './funding.component.html',
-  styleUrls: ['./funding.component.scss']
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.scss']
 })
-export class FundingComponent implements OnInit {
+export class ContactComponent implements OnInit {
   form: FormGroup;
-  displayedColumns: string[] = ['funding_source', 'addedBy', 'action'];
+  displayedColumns: string[] = ['first_name', 'last_name', 'email', 'country', 'function', 'type_of_contact', 'addedBy', 'action'];
   dataSource = [];
 
   @ViewChild(MatTable) table: MatTable<any>;
@@ -26,11 +26,16 @@ export class FundingComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.formBuilder.group({
-      funding_source: [null, [Validators.required]]
+      first_name: [null, [Validators.required]],
+      last_name: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.email]],
+      country: [null, [Validators.required]],
+      functions: [null, [Validators.required]],
+      type_of_contact: [null, [Validators.required]]
     });
 
     const projectData = this.projectService.getProjectData();
-    this.userService.get('fundings', projectData && projectData.projectData ? projectData.projectData.id : null)
+    this.userService.get('contacts', projectData && projectData.projectData ? projectData.projectData.id : null)
       .then((data) => {
         this.dataSource = data;
       })
@@ -50,16 +55,16 @@ export class FundingComponent implements OnInit {
       id: projectData && projectData.projectData ? projectData.projectData.id : null,
       user: projectData ? projectData.username : null
     };
-    this.userService.post('fundings', data, projectData && projectData.projectData ? projectData.projectData.id : null)
+    this.userService.post('contacts', data, projectData && projectData.projectData ? projectData.projectData.id : null)
       .then((res) => {
         this.dataSource.push(res);
         if (this.table) { this.table.renderRows(); }
-        this.snackBar.open('Successfully added funding.', 'Ok', {
+        this.snackBar.open('Successfully added contact.', 'Ok', {
           duration: 3000
         });
       })
       .catch((error) => {
-        this.snackBar.open('Failed to add funding.', 'Ok', {
+        this.snackBar.open('Failed to add contact.', 'Ok', {
           duration: 5000
         });
         console.error(error.message);
@@ -67,15 +72,15 @@ export class FundingComponent implements OnInit {
   }
 
   remove(data: any) {
-    this.userService.delete('fundings', data.id)
+    this.userService.delete('contacts', data.id)
       .then(() => {
-        this.snackBar.open('Successfully removed funding.', 'Ok', {
+        this.snackBar.open('Successfully removed contact.', 'Ok', {
           duration: 3000
         });
         this.dataSource = this.dataSource.filter(row => row.id !== data.id);
       })
       .catch((error) => {
-        this.snackBar.open('Failed to remove funding.', 'Ok', {
+        this.snackBar.open('Failed to remove contact.', 'Ok', {
           duration: 5000
         });
         console.error(error.message);

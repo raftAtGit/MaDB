@@ -45,10 +45,6 @@ body {
 /* FORMS */
 form {
   width: 80%;
-  table {
-    width: 100%;
-    margin-bottom: 32px;
-  }
   .form-item {
     display: block;
     min-height: 64px;
@@ -58,4 +54,9 @@ form {
     margin-top: 24px;
     text-align: right;
   }
+}
+
+/* TABLES */
+table {
+  width: 80%;
 }

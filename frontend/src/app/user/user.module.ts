@@ -2,7 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ManageComponent, ProjectComponent, LoginComponent, ThemeComponent, FundingComponent, BudgetComponent } from './components';
+import { ManageComponent, ProjectComponent, LoginComponent,
+  ThemeComponent, FundingComponent, BudgetComponent,
+  PartnershipComponent, BeneficiaryComponent, ContactComponent
+} from './components';
 import { UserComponent } from './pages';
 import { SharedModule } from '../shared/shared.module';
 import { AuthGuard } from '../shared/guards/auth.guard';
@@ -27,18 +30,33 @@ const ROUTES: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'theme',
+        path: 'themes',
         component: ThemeComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'budget',
+        path: 'budgets',
         component: BudgetComponent,
         canActivate: [AuthGuard]
       },
       {
-        path: 'funding',
+        path: 'fundings',
         component: FundingComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'contacts',
+        component: ContactComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'beneficiaries',
+        component: BeneficiaryComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'partnerships',
+        component: PartnershipComponent,
         canActivate: [AuthGuard]
       }
     ]
@@ -53,7 +71,10 @@ const ROUTES: Routes = [
     LoginComponent,
     ThemeComponent,
     FundingComponent,
-    BudgetComponent
+    BudgetComponent,
+    ContactComponent,
+    BeneficiaryComponent,
+    PartnershipComponent
   ],
   imports: [
     CommonModule,

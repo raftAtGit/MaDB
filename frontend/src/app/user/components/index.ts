@@ -4,3 +4,6 @@ export * from './login/login.component';
 export * from './theme/theme.component';
 export * from './funding/funding.component';
 export * from './budget/budget.component';
+export * from './partnership/partnership.component';
+export * from './beneficiary/beneficiary.component';
+export * from './contact/contact.component';

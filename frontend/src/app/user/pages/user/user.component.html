@@ -4,9 +4,12 @@
       <div>
         <li routerLink="/manage">Home</li>
         <ng-container *ngIf="projectService?.selectedProject()">
-          <li routerLink="/theme">Theme</li>
-          <li routerLink="/funding">Funding</li>
-          <li routerLink="/budget">Budget</li>
+          <li routerLink="/themes">Themes</li>
+          <li routerLink="/fundings">Funding Sources</li>
+          <li routerLink="/budgets">Budgets</li>
+          <li routerLink="/beneficiaries">Beneficiaries</li>
+          <li routerLink="/partnerships">Partnerships</li>
+          <li routerLink="/contacts">Contacts</li>
         </ng-container>
       </div>
       <li (click)="logout()" *ngIf="projectService.isLoggedIn()">

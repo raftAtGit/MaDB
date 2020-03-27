@@ -31,27 +31,6 @@ export class ProjectService {
     };
   }
 
-  setThemeData(data: any) {
-    this.project = {
-      ...this.project,
-      themeData: data
-    };
-  }
-
-  setFundingData(data: any) {
-    this.project = {
-      ...this.project,
-      fundingData: data
-    };
-  }
-
-  setBudgetData(data: any) {
-    this.project = {
-      ...this.project,
-      budgetData: data
-    };
-  }
-
   setUserData(data: any) {
     this.project = {
       ...this.project,

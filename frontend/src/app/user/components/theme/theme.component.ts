@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTable } from '@angular/material/table';
 
 import { ProjectService, UserService } from '../../services';
 
@@ -11,6 +12,8 @@ import { ProjectService, UserService } from '../../services';
 })
 export class ThemeComponent implements OnInit {
   form: FormGroup;
+  displayedColumns: string[] = ['theme', 'addedBy', 'action'];
+  dataSource = [];
   themes: string[] = [
     'Digital',
     'Entrepreneurship',
@@ -27,8 +30,8 @@ export class ThemeComponent implements OnInit {
     'YEEiE',
     'Youth Savings Groups'
   ];
-  displayedColumns: string[] = ['theme', 'addedBy', 'action'];
-  dataSource = [];
+
+  @ViewChild(MatTable) table: MatTable<any>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,8 +47,8 @@ export class ThemeComponent implements OnInit {
 
     const projectData = this.projectService.getProjectData();
     this.userService.get('themes', projectData && projectData.projectData ? projectData.projectData.id : null)
-      .then((themes) => {
-        this.dataSource = themes;
+      .then((data) => {
+        this.dataSource = data;
       })
       .catch((error) => {
         console.error(error.message);
@@ -64,12 +67,12 @@ export class ThemeComponent implements OnInit {
       user: projectData ? projectData.username : null
     };
     this.userService.post('themes', data, projectData && projectData.projectData ? projectData.projectData.id : null)
-      .then((theme) => {
-        this.dataSource.push(theme);
+      .then((res) => {
+        this.dataSource.push(res);
+        if (this.table) { this.table.renderRows(); }
         this.snackBar.open('Successfully added theme.', 'Ok', {
           duration: 3000
         });
-        this.projectService.setThemeData(data.theme);
       })
       .catch((error) => {
         this.snackBar.open('Failed to add theme.', 'Ok', {
@@ -79,13 +82,13 @@ export class ThemeComponent implements OnInit {
       });
   }
 
-  remove(theme: any) {
-    this.userService.delete('themes', theme.id)
+  remove(data: any) {
+    this.userService.delete('themes', data.id)
       .then(() => {
         this.snackBar.open('Successfully removed theme.', 'Ok', {
           duration: 3000
         });
-        this.dataSource = this.dataSource.filter(data => data.id !== theme.id);
+        this.dataSource = this.dataSource.filter(row => row.id !== data.id);
       })
       .catch((error) => {
         this.snackBar.open('Failed to remove theme.', 'Ok', {
