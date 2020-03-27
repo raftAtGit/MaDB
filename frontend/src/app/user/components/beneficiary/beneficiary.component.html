@@ -23,9 +23,8 @@
       <mat-label for="gender">Gender</mat-label>
       <mat-select name="gender" formControlName="gender">
         <mat-option disabled>Select gender</mat-option>
-        <mat-option value="male">Male</mat-option>
-        <mat-option value="female">Female</mat-option>
-        <mat-option value="other">Other</mat-option>
+        <mat-option value="Male">Male</mat-option>
+        <mat-option value="Female">Female</mat-option>
       </mat-select>
       <mat-error *ngIf="form.get('gender').invalid">
         Gender is <strong>required</strong>

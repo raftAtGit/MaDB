@@ -41,22 +41,28 @@ body {
   font-family: $font-family;
 }
 
-
-/* FORMS */
-form {
-  width: 80%;
-  .form-item {
-    display: block;
-    min-height: 64px;
-    width: 100%;
+section {
+  /* FORMS */
+  form {
+    width: 80%;
+    .form-item {
+      display: block;
+      min-height: 64px;
+      width: 100%;
+    }
+    .submit {
+      margin-top: 24px;
+      text-align: right;
+    }
   }
-  .submit {
-    margin-top: 24px;
-    text-align: right;
+  
+  /* TABLES */
+  table {
+    width: 80%;
   }
-}
-
-/* TABLES */
-table {
-  width: 80%;
+  
+  h3 {
+    margin-left: 10%;
+    align-self: flex-start;
+  }
 }
