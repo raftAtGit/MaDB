@@ -92,8 +92,8 @@ class DataInitializer {
 	    			" The project aims to enhance economic participation of young women and men aged 18-35, from marginalized areas of Cairo, Alexandria and Assuit in Egypt, and promote equal economic opportunities and decision making for young women. If youth have access to employability, entrepreneurship, relevant technical and innovative skills to access either wage or self-employment opportunities; and key stakeholders have the capacity and understanding to promote gender supportive work and business environment, then those youth will earn income and develop confidence, improving their long-term capabilities and economic status.", 
 	    			null, "DummyUser3")));
 
-	    	log.info("Preloading " + projectCountryRepository.save(new ProjectCountry(NO_ID, project, egypt)));
-	    	log.info("Preloading " + projectCountryRepository.save(new ProjectCountry(NO_ID, project, burkinaFaso)));
+	    	log.info("Preloading " + projectCountryRepository.save(new ProjectCountry(NO_ID, project, egypt, "DummyUser1")));
+	    	log.info("Preloading " + projectCountryRepository.save(new ProjectCountry(NO_ID, project, burkinaFaso, "DummyUser1")));
 	    	
 	    	log.info("Preloading " + budgetRepository.save(new Budget(NO_ID, project, "2019-2020", new BigDecimal(100000), "DummyUser1")));
                 
