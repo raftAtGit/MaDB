@@ -2,7 +2,7 @@ FROM gradle:6.2.2 AS builder
  
 COPY . /app
 WORKDIR /app
-RUN gradle clean javadoc && cp -r build/docs/javadoc/ src/main/resources/static/ 
+RUN gradle clean javadoc && cp -r build/docs/javadoc/ src/main/resources/ 
 RUN gradle clean build
 
 

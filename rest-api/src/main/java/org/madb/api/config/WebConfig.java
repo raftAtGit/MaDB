@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.servlet.resource.EncodedResourceResolver;
 
 /** Web MVC configuration. Enables CORS (Cross-Origin Resource Sharing) and publishes javadocs. */
 @Configuration
@@ -24,7 +25,10 @@ public class WebConfig {
 			public void addResourceHandlers(ResourceHandlerRegistry registry) {
 			    registry
 			      .addResourceHandler("/javadoc/**")
-			      .addResourceLocations("classpath:/static/javadoc/");
+			      .addResourceLocations("classpath:/javadoc/")
+			      .setCachePeriod(3600)
+			      .resourceChain(true)
+			      .addResolver(new EncodedResourceResolver());
 			 }
 		};
 	}
