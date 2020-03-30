@@ -64,8 +64,12 @@ public class ThemeController {
 	}
 	
 	@DeleteMapping("/themes/{id}")
-	void deleteThemes(@PathVariable Integer id) {
+	Response deleteThemes(@PathVariable Integer id) {
+		if (!themeRepository.existsById(id))
+			throw new NotFoundException(id);
+		
 		themeRepository.deleteById(id);
+		return Response.OK;
 	}
 	
 	private void copyThemes(Theme from, Theme to) {

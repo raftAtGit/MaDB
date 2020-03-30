@@ -61,8 +61,12 @@ class BudgetController {
 	}
 	
 	@DeleteMapping("/budgets/{id}")
-	void deleteBudget(@PathVariable Integer id) {
+	Response deleteBudget(@PathVariable Integer id) {
+		if (!budgetRepository.existsById(id))
+			throw new NotFoundException(id);
+		
 	    budgetRepository.deleteById(id);
+	    return Response.OK;
 	}
 	
 	

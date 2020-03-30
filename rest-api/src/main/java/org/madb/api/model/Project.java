@@ -5,11 +5,8 @@ import java.sql.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -39,12 +36,6 @@ public class Project {
 	@NotEmpty
 	@Column(name = "PROJECT_ID", unique = true)
 	private String projectId;
-	
-	@NotNull
-	@ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "COUNTRY_ID")
-	private Country country;
-	
 	
 	@NotNull
 	@Size(max = 250)

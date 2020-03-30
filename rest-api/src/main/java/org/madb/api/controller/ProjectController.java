@@ -6,9 +6,7 @@ import javax.validation.Valid;
 
 import org.madb.api.controller.exception.BadRequestException;
 import org.madb.api.controller.exception.NotFoundException;
-import org.madb.api.jpa.CountryRepository;
 import org.madb.api.jpa.ProjectRepository;
-import org.madb.api.model.Country;
 import org.madb.api.model.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -28,9 +26,6 @@ class ProjectController {
 	@Autowired
 	private ProjectRepository projectRepository;
 	
-	@Autowired
-	private CountryRepository countryRepository;
-
 	@GetMapping("/projects")
 	List<Project> all() {
 		return projectRepository.findAll();
@@ -47,10 +42,6 @@ class ProjectController {
 		if (projectRepository.existsByProjectId(newProject.getProjectId()))
 			throw new BadRequestException("projectId already exists: " + newProject.getProjectId());
 		
-		Country country = countryRepository.findById(newProject.getCountry().getId())
-			.orElseThrow(() -> new NotFoundException("country not found, id: " + newProject.getCountry().getId()));
-		
-		newProject.setCountry(country);
 		return projectRepository.save(newProject);
 	}
 	
@@ -62,10 +53,6 @@ class ProjectController {
 	    		if (!newProject.getProjectId().equals(project.getProjectId()) && projectRepository.existsByProjectId(newProject.getProjectId()))
     				throw new BadRequestException("projectId already exists: " + newProject.getProjectId());
 	    		
-	    		Country country = countryRepository.findById(newProject.getCountry().getId())
-	    				.orElseThrow(() -> new NotFoundException("country not found, id: " + newProject.getCountry().getId()));
-	    		newProject.setCountry(country);
-	    		
 	    		copyProject(newProject, project);
 	    		return projectRepository.save(project);
 	    	})
@@ -76,7 +63,6 @@ class ProjectController {
             // skip project.status
             to.setProjectId(from.getProjectId());
             to.setName(from.getName());
-            to.setCountry(from.getCountry());
             to.setStartDate(from.getStartDate());
             to.setEndDate(from.getEndDate());
             to.setBudget(from.getBudget());

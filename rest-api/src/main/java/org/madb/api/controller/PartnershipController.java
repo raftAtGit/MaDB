@@ -64,8 +64,12 @@ public class PartnershipController {
     }
 
     @DeleteMapping("/partnerships/{id}")
-    void deletePartnerships(@PathVariable Integer id) {
-            partnershipRepository.deleteById(id);
+    Response deletePartnerships(@PathVariable Integer id) {
+		if (!partnershipRepository.existsById(id))
+			throw new NotFoundException(id);
+		
+        partnershipRepository.deleteById(id);
+        return Response.OK;    
     }
 
     private void copyPartnerships(Partnership from, Partnership to) {

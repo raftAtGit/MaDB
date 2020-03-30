@@ -61,8 +61,12 @@ class ContactController {
 	}
 	
 	@DeleteMapping("/contacts/{id}")
-	void deleteContact(@PathVariable Integer id) {
+	Response deleteContact(@PathVariable Integer id) {
+		if (!contactRepository.existsById(id))
+			throw new NotFoundException(id);
+		
 		contactRepository.deleteById(id);
+		return Response.OK;
 	}
 	
 	private void copyContact(Contact from, Contact to) {

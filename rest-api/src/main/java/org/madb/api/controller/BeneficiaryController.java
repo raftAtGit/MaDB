@@ -32,16 +32,16 @@ public class BeneficiaryController {
 	private ProjectRepository projectRepository;
 
 	@Autowired
-	private BeneficiaryRepository beneficiariesRepository;
+	private BeneficiaryRepository beneficiaryRepository;
 
 	@GetMapping("/beneficiaries")
 	List<Beneficiary> all(@RequestParam Integer projectId) {
-		return beneficiariesRepository.findByProjectId(projectId);
+		return beneficiaryRepository.findByProjectId(projectId);
 	}
 	
 	@GetMapping("/beneficiaries/{id}")
 	Beneficiary findById(@PathVariable Integer id) {
-	    return  beneficiariesRepository.findById(id)
+	    return  beneficiaryRepository.findById(id)
 	      .orElseThrow(() -> new NotFoundException(id));
 	}
 	
@@ -49,23 +49,27 @@ public class BeneficiaryController {
 	Beneficiary createBeneficiaries(@RequestParam Integer projectId, @RequestBody @Valid Beneficiary newbeneficiary) {
         return projectRepository.findById(projectId).map(beneficiary -> {
         	newbeneficiary.setProject(beneficiary);
-            return beneficiariesRepository.save(newbeneficiary);
+            return beneficiaryRepository.save(newbeneficiary);
         }).orElseThrow(() -> new NotFoundException("project not found, id: " + projectId));
 	}
 	
 	@PutMapping("/beneficiaries/{id}")
 	   Beneficiary updateBeneficiaries(@PathVariable Integer id, @RequestBody @Valid Beneficiary newBeneficiaries) {
 
-	    return beneficiariesRepository.findById(id)
+	    return beneficiaryRepository.findById(id)
 	    	.map(beneficiary -> {
 	    		copyBeneficiaries(newBeneficiaries, beneficiary);
-	    		return beneficiariesRepository.save(beneficiary);
+	    		return beneficiaryRepository.save(beneficiary);
 	    }).orElseThrow(() -> new NotFoundException(id));
 	}
 	
 	@DeleteMapping("/beneficiaries/{id}")
-	void deleteBeneficiaries(@PathVariable Integer id) {
-		beneficiariesRepository.deleteById(id);
+	Response deleteBeneficiaries(@PathVariable Integer id) {
+		if (!beneficiaryRepository.existsById(id))
+			throw new NotFoundException(id);
+		
+		beneficiaryRepository.deleteById(id);
+		return Response.OK;
 	}
 	
 	private void copyBeneficiaries(Beneficiary from, Beneficiary to) {

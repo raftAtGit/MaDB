@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
 @RestController
 @RequestMapping("/v1")
 @Validated
@@ -49,14 +46,8 @@ public class AdminController {
 	    	.map(project -> {
 				project.setStatus(Status.REJECTED);
 				projectRepository.save(project);
-	    		return new Response("OK");
+	    		return Response.OK;
 	    	})
 	    .orElseThrow(() -> new NotFoundException(id));
-	}
-	
-	@Data
-	@AllArgsConstructor
-	static class Response {
-		String status;
 	}
 }

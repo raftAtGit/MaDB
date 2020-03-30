@@ -64,8 +64,12 @@ public class FundingController {
 	}
 	
 	@DeleteMapping("/fundings/{id}")
-	void deleteFunding(@PathVariable Integer id) {
+	Response deleteFunding(@PathVariable Integer id) {
+		if (!fundingRepository.existsById(id))
+			throw new NotFoundException(id);
+		
 		fundingRepository.deleteById(id);
+		return Response.OK;
 	}
 	
 	private void copyFunding(Funding from, Funding to) {
