@@ -38,3 +38,7 @@ dependencies {
 test {
 	useJUnitPlatform()
 }
+
+javadoc {
+	options.memberLevel = JavadocMemberLevel.PACKAGE
+}

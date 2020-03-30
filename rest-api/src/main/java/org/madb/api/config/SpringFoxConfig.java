@@ -9,9 +9,10 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/** Enables auto-generated Swagger online documentation which can be found at /swagger-ui.html. */
 @Configuration
 @EnableSwagger2
-class SpringFoxConfig {                                    
+public class SpringFoxConfig {                                    
     @Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)

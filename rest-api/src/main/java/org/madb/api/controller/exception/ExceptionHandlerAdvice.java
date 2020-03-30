@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+/** Converts some specific exceptions into HTTP status codes. */
 @ControllerAdvice
 class ExceptionHandlerAdvice {
 

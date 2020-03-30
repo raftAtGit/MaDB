@@ -30,10 +30,12 @@ import org.springframework.context.annotation.Configuration;
 
 import lombok.extern.slf4j.Slf4j;
 
+/** Convenience class to create some initial records in the database. This class runs only if the system property 
+ * <code>madb.db.createInitialRecords</code> is defined and its value is not <code>false</code>. */
 @Configuration
 @ConditionalOnProperty("madb.db.createInitialRecords")
 @Slf4j
-class DataInitializer {
+public class DataInitializer {
 	
 	static final Integer NO_ID = null;
 	
