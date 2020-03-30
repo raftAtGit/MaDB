@@ -7,6 +7,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
@@ -18,6 +19,7 @@ const MATERIAL_MODULES = [
   MatAutocompleteModule,
   MatButtonModule,
   MatDatepickerModule,
+  MatExpansionModule,
   MatNativeDateModule,
   MatInputModule,
   MatListModule,
@@ -28,9 +30,14 @@ const MATERIAL_MODULES = [
 ];
 
 import { AuthGuard } from './guards/auth.guard';
+import { FilterPipe } from './pipes/filter.pipe';
 
 @NgModule({
+  declarations: [
+    FilterPipe
+  ],
   exports: [
+    FilterPipe,
     ...MATERIAL_MODULES,
     FormsModule,
     ReactiveFormsModule
@@ -43,7 +50,8 @@ import { AuthGuard } from './guards/auth.guard';
     ...MATERIAL_MODULES
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    FilterPipe
   ]
 })
 export class SharedModule {}

@@ -15,7 +15,13 @@ export class UserComponent implements OnInit {
     public projectService: ProjectService
   ) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    setTimeout(() => {
+      if (this.projectService.getProjectData().username === 'admin') {
+        this.router.navigate(['/admin']);
+      }
+    });
+  }
 
   logout() {
     this.projectService.clear();

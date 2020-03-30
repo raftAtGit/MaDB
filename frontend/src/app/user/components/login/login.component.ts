@@ -40,7 +40,12 @@ export class LoginComponent implements OnInit {
       duration: 3000
     });
     this.projectService.setUserData(form.value);
-    this.router.navigate(['manage']);
+
+    if (form.get('username').value === 'admin') {
+      this.router.navigate(['admin']);
+    } else {
+      this.router.navigate(['manage']);
+    }
   }
 
 }

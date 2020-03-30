@@ -1,0 +1,45 @@
+@import "src/assets/styles/variables.scss";
+
+.navbar {
+  background-color: $primary;
+  color: white;
+
+  .navbar-content {
+    max-width: 960px;
+    margin: 0 auto;
+
+    ul {
+      padding: 0 20px;
+      margin: 0;
+      display: flex;
+      justify-content: space-between;
+
+      > div { display: flex; }
+
+      li {
+        display: inline-block;
+        font-weight: bold;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        outline: none;
+        transition: background-color 0.5s ease,
+          color 0.5s ease;
+          
+        display: flex !important;
+        align-items: center;
+
+        &:hover {
+          cursor: pointer;
+          background-color: white;
+          color: $accent;
+        }
+      }
+    }
+  }
+}
+
+article {
+  max-width: 960px;
+  margin: 22px auto 0;
+  padding: 0 16px;
+}

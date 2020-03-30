@@ -53,6 +53,12 @@ export class UserService {
     return RequestLibrary.get(undefined, url);
   }
 
+  put(controller: string, body: any, projectId: number): Promise<any> {
+    const endPoint = `v1/${controller}/${projectId}`;
+    const url = `${environment.settings.api}/${endPoint}`;
+    return RequestLibrary.put(undefined, url, body);
+  }
+
   delete(controller: string, id: number): Promise<any> {
     const endPoint = `v1/${controller}/${id}`;
     const url = `${environment.settings.api}/${endPoint}`;

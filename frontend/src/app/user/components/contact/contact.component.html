@@ -80,13 +80,29 @@
   <ng-container *ngIf="dataSource?.length">
     <h3>Added Contacts</h3>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="budget">
-        <th mat-header-cell *matHeaderCellDef>Budget</th>
-        <td mat-cell *matCellDef="let row">{{row.budget}}</td>
+      <ng-container matColumnDef="first_name">
+        <th mat-header-cell *matHeaderCellDef>First name</th>
+        <td mat-cell *matCellDef="let row">{{row.first_name}}</td>
       </ng-container>
-      <ng-container matColumnDef="financialYear">
-        <th mat-header-cell *matHeaderCellDef>Budget</th>
-        <td mat-cell *matCellDef="let row">{{row.financialYear}}</td>
+      <ng-container matColumnDef="last_name">
+        <th mat-header-cell *matHeaderCellDef>Last name</th>
+        <td mat-cell *matCellDef="let row">{{row.last_name}}</td>
+      </ng-container>
+      <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let row">{{row.email}}</td>
+      </ng-container>
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef>Country</th>
+        <td mat-cell *matCellDef="let row">{{row.country}}</td>
+      </ng-container>
+      <ng-container matColumnDef="function">
+        <th mat-header-cell *matHeaderCellDef>Function</th>
+        <td mat-cell *matCellDef="let row">{{row.function}}</td>
+      </ng-container>
+      <ng-container matColumnDef="type_of_contact">
+        <th mat-header-cell *matHeaderCellDef>Type of Contact</th>
+        <td mat-cell *matCellDef="let row">{{row.type_of_contact}}</td>
       </ng-container>
       <ng-container matColumnDef="addedBy">
         <th mat-header-cell *matHeaderCellDef>Added By</th>
