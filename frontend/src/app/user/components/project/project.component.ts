@@ -16,7 +16,6 @@ export class ProjectComponent implements OnInit {
   form: FormGroup;
   projects: any[];
   filteredProjects: Observable<any[]>;
-  countries: any[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -31,7 +30,6 @@ export class ProjectComponent implements OnInit {
       isNewProject: [true, [Validators.required]],
       projectId: [null, [Validators.required]],
       name: [null, [Validators.required]],
-      country: [null, [Validators.required]],
       startDate: [null, [Validators.required]],
       endDate: [null, [Validators.required]],
       summary: [null, [Validators.required]],
@@ -45,14 +43,6 @@ export class ProjectComponent implements OnInit {
         startWith(''),
         map(value => this._filter(value))
       );
-
-    this.userService.getAll('countries')
-      .then((countries) => {
-        this.countries = countries;
-      })
-      .catch((error) => {
-        console.error(error.message);
-      });
 
     this.userService.getAll('projects')
       .then((projects) => {
@@ -117,10 +107,7 @@ export class ProjectComponent implements OnInit {
     this.userService.getProject('projects', selectedProject.id)
       .then((project) => {
         this.projectService.setProjectData(project);
-        this.form.patchValue({
-          ...project,
-          country: project.country.id
-        });
+        this.form.patchValue(project);
       })
       .catch((error) => {
         this.snackBar.open('Failed to retrieve project data.', 'Ok', {

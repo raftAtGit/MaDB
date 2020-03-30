@@ -39,6 +39,7 @@ export class AuditComponent implements OnInit {
       this.userService.get('beneficiaries', project.id),
       this.userService.get('budgets', project.id),
       this.userService.get('contacts', project.id),
+      this.userService.get('project_countries', project.id),
       this.userService.get('fundings', project.id),
       this.userService.get('partnerships', project.id),
       this.userService.get('themes', project.id)

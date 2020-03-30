@@ -7,3 +7,4 @@ export * from './budget/budget.component';
 export * from './partnership/partnership.component';
 export * from './beneficiary/beneficiary.component';
 export * from './contact/contact.component';
+export * from './country/country.component';

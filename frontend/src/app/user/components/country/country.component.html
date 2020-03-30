@@ -1,20 +1,25 @@
-<section id="funding" *ngIf="form">
+<section id="country" *ngIf="form">
 
   <form [formGroup]="form" (ngSubmit)="onSubmit(form)" autocomplete="false">
-    <h2>Funding Sources</h2>
+
+    <h2>Countries</h2>
 
     <!-- Project name -->
     <mat-form-field class="form-item">
       <mat-label for="name">Project name</mat-label>
       <input matInput name="name" [value]="projectService?.selectedProject()?.name" disabled>
     </mat-form-field>
-
-    <!-- Funding source -->
+    
+    <!-- Project country -->
     <mat-form-field class="form-item">
-      <mat-label for="funding_source">Funding source</mat-label>
-      <input matInput name="funding_source" formControlName="funding_source">
-      <mat-error *ngIf="form.get('funding_source').invalid">
-        Funding source is <strong>required</strong>
+      <mat-label for="country">Country</mat-label>
+      <mat-select name="country" formControlName="country">
+        <mat-option *ngFor="let country of countries" [value]="country">
+          {{country.name}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('country').invalid">
+        Country is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
@@ -26,11 +31,11 @@
   </form>
 
   <ng-container *ngIf="dataSource?.length">
-    <h3 class="table-title">Added Funding Sources</h3>
+    <h3 class="table-title">Added Countries</h3>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-      <ng-container matColumnDef="funding_source">
-        <th mat-header-cell *matHeaderCellDef>Funding Source</th>
-        <td mat-cell *matCellDef="let row">{{row.funding_source}}</td>
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef>Country</th>
+        <td mat-cell *matCellDef="let row">{{row.country.name}}</td>
       </ng-container>
       <ng-container matColumnDef="addedBy">
         <th mat-header-cell *matHeaderCellDef>Added By</th>

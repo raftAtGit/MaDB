@@ -139,9 +139,30 @@
 
 
 
-        <h4>Funding Sources</h4>
-        <ng-container *ngIf="projectDetails?.length && projectDetails[4]?.length; else noFundingSources">
+        <h4>Countries</h4>
+        <ng-container *ngIf="projectDetails?.length && projectDetails[4]?.length; else noCountries">
           <table mat-table [dataSource]="projectDetails[4]" class="mat-elevation-z8">
+            <ng-container matColumnDef="country">
+              <th mat-header-cell *matHeaderCellDef>Country</th>
+              <td mat-cell *matCellDef="let row">{{row.country.name}}</td>
+            </ng-container>
+            <ng-container matColumnDef="addedBy">
+              <th mat-header-cell *matHeaderCellDef>Added By</th>
+              <td mat-cell *matCellDef="let row">{{row.user}}</td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="['country', 'addedBy']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['country', 'addedBy'];"></tr>
+          </table>
+        </ng-container>
+        <ng-template #noCountries>
+          <p><em>No Countries added</em></p>
+        </ng-template>
+
+
+
+        <h4>Funding Sources</h4>
+        <ng-container *ngIf="projectDetails?.length && projectDetails[5]?.length; else noFundingSources">
+          <table mat-table [dataSource]="projectDetails[5]" class="mat-elevation-z8">
             <ng-container matColumnDef="funding_source">
               <th mat-header-cell *matHeaderCellDef>Funding Source</th>
               <td mat-cell *matCellDef="let row">{{row.funding_source}}</td>
@@ -161,8 +182,8 @@
 
 
         <h4>Partnerships</h4>
-        <ng-container *ngIf="projectDetails?.length && projectDetails[5]?.length; else noPartnerships">
-          <table mat-table [dataSource]="projectDetails[5]" class="mat-elevation-z8">
+        <ng-container *ngIf="projectDetails?.length && projectDetails[6]?.length; else noPartnerships">
+          <table mat-table [dataSource]="projectDetails[6]" class="mat-elevation-z8">
             <ng-container matColumnDef="partner">
               <th mat-header-cell *matHeaderCellDef>Partner</th>
               <td mat-cell *matCellDef="let row">{{row.partner}}</td>
@@ -186,8 +207,8 @@
 
 
         <h4>Themes</h4>
-        <ng-container *ngIf="projectDetails?.length && projectDetails[6]?.length; else noThemes">
-          <table mat-table [dataSource]="projectDetails[6]" class="mat-elevation-z8">
+        <ng-container *ngIf="projectDetails?.length && projectDetails[7]?.length; else noThemes">
+          <table mat-table [dataSource]="projectDetails[7]" class="mat-elevation-z8">
             <ng-container matColumnDef="theme">
               <th mat-header-cell *matHeaderCellDef>Theme</th>
               <td mat-cell *matCellDef="let row">{{row.theme}}</td>

@@ -55,19 +55,6 @@
       </mat-error>
     </mat-form-field>
     
-    <!-- Project country -->
-    <mat-form-field class="form-item">
-      <mat-label for="country">Country</mat-label>
-      <mat-select name="country" formControlName="country">
-        <mat-option *ngFor="let country of countries" [value]="country.id">
-          {{country.name}}
-        </mat-option>
-      </mat-select>
-      <mat-error *ngIf="form.get('country').invalid">
-        Country is <strong>required</strong>
-      </mat-error>
-    </mat-form-field>
-    
     <!-- Start date -->
     <mat-form-field class="form-item">
       <mat-label for="startDate">Start date</mat-label>

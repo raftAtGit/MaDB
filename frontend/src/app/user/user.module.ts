@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ManageComponent, ProjectComponent, LoginComponent,
   ThemeComponent, FundingComponent, BudgetComponent,
-  PartnershipComponent, BeneficiaryComponent, ContactComponent
+  PartnershipComponent, BeneficiaryComponent, ContactComponent, CountryComponent
 } from './components';
 import { UserComponent } from './pages';
 import { SharedModule } from '../shared/shared.module';
@@ -50,6 +50,11 @@ const ROUTES: Routes = [
         canActivate: [AuthGuard]
       },
       {
+        path: 'countries',
+        component: CountryComponent,
+        canActivate: [AuthGuard]
+      },
+      {
         path: 'beneficiaries',
         component: BeneficiaryComponent,
         canActivate: [AuthGuard]
@@ -73,6 +78,7 @@ const ROUTES: Routes = [
     FundingComponent,
     BudgetComponent,
     ContactComponent,
+    CountryComponent,
     BeneficiaryComponent,
     PartnershipComponent
   ],

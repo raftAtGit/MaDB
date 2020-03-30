@@ -8,7 +8,6 @@
       <mat-label for="name">Project name</mat-label>
       <input matInput name="name" [value]="projectService?.selectedProject()?.name" disabled>
     </mat-form-field>
-     'country', 'functions', 'type_of_contact', 'addedBy', 'action'];
   
     <!-- First name -->
     <mat-form-field class="form-item">
@@ -78,7 +77,7 @@
   </form>
 
   <ng-container *ngIf="dataSource?.length">
-    <h3>Added Contacts</h3>
+    <h3 class="table-title">Added Contacts</h3>
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
       <ng-container matColumnDef="first_name">
         <th mat-header-cell *matHeaderCellDef>First name</th>
