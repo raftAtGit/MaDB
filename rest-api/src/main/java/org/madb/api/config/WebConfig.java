@@ -34,10 +34,9 @@ public class WebConfig {
 			      .addResolver(new EncodedResourceResolver());
 			}
 			
-			/** serve /javadoc and /javadoc/ path from /javadoc/index.html */
+			/** serve /javadoc/ path from /javadoc/index.html */
 			@Override
 		    public void addViewControllers(ViewControllerRegistry registry) {
-		        registry.addViewController("/javadoc").setViewName("forward:/javadoc/index.html");
 		        registry.addViewController("/javadoc/").setViewName("forward:/javadoc/index.html");
 		    }
 		};
