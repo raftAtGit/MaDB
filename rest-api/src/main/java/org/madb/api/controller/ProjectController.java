@@ -28,7 +28,7 @@ class ProjectController {
 	
 	@GetMapping("/projects")
 	List<Project> all() {
-		return projectRepository.findAll();
+		return projectRepository.findByStatusNot(Project.Status.REJECTED);
 	}
 	
 	@GetMapping("/projects/{id}")
