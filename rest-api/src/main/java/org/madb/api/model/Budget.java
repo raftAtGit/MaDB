@@ -12,6 +12,8 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import javax.persistence.Column;
 import javax.validation.constraints.Size;
 
@@ -36,6 +38,7 @@ public class Budget {
     private Project project;
 	
     @NotNull
+    @JsonProperty("financial_year")
     private String financialYear;
     
     @NotNull
