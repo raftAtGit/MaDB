@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -46,11 +47,13 @@ public class Beneficiary {
     @NotNull
     @Size(max = 100)
     @Column(name = "FINANCIAL_YEAR")
-    private String financial_year;
+    @JsonProperty("financial_year")
+    private String financialYear;
     
     @NotNull
     @Column(name = "NUMBER_OF_BENEFICIARIES")
-    private Integer number_of_beneficiaries;
+    @JsonProperty("number_of_beneficiaries")
+    private Integer numberOfBeneficiaries;
     
     @NotNull
     @Size(max = 50)

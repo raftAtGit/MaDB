@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -41,11 +42,13 @@ public class Contact {
     @NotNull
     @Size(max=100)
     @Column(name = "FIRST_NAME")
+    @JsonProperty("first_name")
     private String firstName;
 
     @NotNull
     @Size(max=100)
     @Column(name = "LAST_NAME")
+    @JsonProperty("last_name")
     private String lastName;
 
     @NotNull

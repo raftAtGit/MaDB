@@ -12,6 +12,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -44,10 +46,12 @@ public class Project {
 	
 	@NotNull
 	@Column(name = "PROJECT_START_DATE")
+    @JsonProperty("start_date")
 	private Date startDate;
 	
 	@NotNull
 	@Column(name = "PROJECT_END_DATE")
+    @JsonProperty("end_date")
 	private Date endDate;
 	
 	@NotNull

@@ -74,8 +74,8 @@ public class BeneficiaryController {
 	
 	private void copyBeneficiaries(Beneficiary from, Beneficiary to) {
 		// never copy project ID
-		to.setFinancial_year(from.getFinancial_year());
-                to.setGender(from.getGender());
-                to.setNumber_of_beneficiaries(from.getNumber_of_beneficiaries());
+		to.setFinancialYear(from.getFinancialYear());
+        to.setGender(from.getGender());
+        to.setNumberOfBeneficiaries(from.getNumberOfBeneficiaries());
 	}
 }
