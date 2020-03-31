@@ -12,7 +12,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /** Enables auto-generated Swagger online documentation which can be found at /swagger-ui.html. */
 @Configuration
 @EnableSwagger2
-public class SpringFoxConfig {                                    
+class SpringFoxConfig {                                    
     @Bean
     public Docket api() { 
         return new Docket(DocumentationType.SWAGGER_2)

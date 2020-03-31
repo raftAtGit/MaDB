@@ -35,7 +35,7 @@ import lombok.extern.slf4j.Slf4j;
 @Configuration
 @ConditionalOnProperty("madb.db.createInitialRecords")
 @Slf4j
-public class DataInitializer {
+class DataInitializer {
 	
 	static final Integer NO_ID = null;
 	

@@ -26,8 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1")
 @Validated
-
-public class ThemeController {
+class ThemeController {
     @Autowired
 	private ProjectRepository projectRepository;
 

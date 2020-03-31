@@ -28,8 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/v1")
 @Validated
-
-public class ProjectCountryController {
+class ProjectCountryController {
 	
     @Autowired
     private ProjectCountryRepository projectCountryRepository;

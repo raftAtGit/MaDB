@@ -10,7 +10,7 @@ import org.springframework.web.servlet.resource.EncodedResourceResolver;
 
 /** Web MVC configuration. Enables CORS (Cross-Origin Resource Sharing) and publishes javadocs. */
 @Configuration
-public class WebConfig {
+class WebConfig {
 
 	@Bean
 	public WebMvcConfigurer corsConfigurer() {
