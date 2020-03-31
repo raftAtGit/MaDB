@@ -33,6 +33,11 @@
           background-color: white;
           color: $accent;
         }
+        
+        &#logout {
+          svg path { fill: white; }
+          &:hover svg path { fill: $accent; }
+        }
       }
     }
   }
