@@ -40,7 +40,7 @@ const ROUTES: Routes = [
         canActivate: [AuthGuard]
       },
       {
-        path: 'fundings',
+        path: 'funding-sources',
         component: FundingComponent,
         canActivate: [AuthGuard]
       },

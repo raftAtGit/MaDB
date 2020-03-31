@@ -31,8 +31,8 @@ export class ProjectComponent implements OnInit {
       isNewProject: [true, [Validators.required]],
       projectId: [null, [Validators.required]],
       name: [null, [Validators.required]],
-      startDate: [null, [Validators.required]],
-      endDate: [null, [Validators.required]],
+      start_date: [null, [Validators.required]],
+      end_date: [null, [Validators.required]],
       summary: [null, [Validators.required]],
       comments: [null],
       budget: [null],
@@ -60,16 +60,18 @@ export class ProjectComponent implements OnInit {
       return;
     }
 
+    const isNewProject = form.get('isNewProject').value;
     const projectData = this.projectService.getProjectData();
     const data = {
       ...form.value,
-      country: {
-        id: form.value.country
-      },
-      id: projectData && projectData.projectData ? projectData.projectData.id : null,
       user: projectData ? projectData.username : null
     };
-    this.userService.setProjectData(data, form.get('isNewProject').value)
+
+    if (!isNewProject) {
+      data.id = projectData && projectData.projectData ? projectData.projectData.id : null;
+    }
+
+    this.userService.setProjectData(data, isNewProject)
       .then((project) => {
         this.snackBar.open('Successfully uploaded project data.', 'Ok', {
           duration: 3000
@@ -78,7 +80,7 @@ export class ProjectComponent implements OnInit {
           ...form.value,
           id: project ? project.id : null
         });
-        this.router.navigate(['manage']);
+        this.router.navigate(['/manage']);
       })
       .catch((error) => {
         this.snackBar.open('Failed to upload project data.', 'Ok', {

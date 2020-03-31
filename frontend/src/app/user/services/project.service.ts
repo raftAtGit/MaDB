@@ -26,8 +26,12 @@ export class ProjectService {
 
   setProjectData(data: any) {
     this.project = {
-      ...this.project,
-      projectData: data
+      username: this.project.username,
+      projectData: {
+        ...this.project.projectData,
+        id: null,
+        ...data
+      }
     };
   }
 

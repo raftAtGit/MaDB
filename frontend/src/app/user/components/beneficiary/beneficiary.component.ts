@@ -33,6 +33,7 @@ export class BeneficiaryComponent implements OnInit {
     });
 
     const projectData = this.projectService.getProjectData();
+    console.log('projectData', projectData);
     this.userService.get('beneficiaries', projectData && projectData.projectData ? projectData.projectData.id : null)
       .then((data) => {
         this.dataSource = data;

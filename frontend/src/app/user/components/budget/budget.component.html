@@ -20,8 +20,8 @@
 
     <!-- Financial Year -->
     <mat-form-field class="form-item">
-      <mat-label for="financialYear">Financial Year</mat-label>
-      <input matInput name="financialYear" formControlName="financialYear">
+      <mat-label for="financial_year">Financial Year</mat-label>
+      <input matInput name="financial_year" formControlName="financial_year">
       <mat-icon matSuffix
         matTooltip="Financial Year - The year of finance (e.g. 2017-2018, or 2018-2019)."
         matTooltipPosition="right">
@@ -29,7 +29,7 @@
           <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/>
         </svg>
       </mat-icon>
-      <mat-error *ngIf="form.get('financialYear').invalid">
+      <mat-error *ngIf="form.get('financial_year').invalid">
         Financial Year is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -48,9 +48,9 @@
         <th mat-header-cell *matHeaderCellDef>Budget</th>
         <td mat-cell *matCellDef="let row">{{row.budget}}</td>
       </ng-container>
-      <ng-container matColumnDef="financialYear">
+      <ng-container matColumnDef="financial_year">
         <th mat-header-cell *matHeaderCellDef>Financial Year</th>
-        <td mat-cell *matCellDef="let row">{{row.financialYear}}</td>
+        <td mat-cell *matCellDef="let row">{{row.financial_year}}</td>
       </ng-container>
       <ng-container matColumnDef="addedBy">
         <th mat-header-cell *matHeaderCellDef>Added By</th>

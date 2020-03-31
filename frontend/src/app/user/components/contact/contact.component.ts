@@ -13,7 +13,7 @@ import { FormLibrary } from 'src/app/shared/libraries/form.lib';
 })
 export class ContactComponent implements OnInit {
   form: FormGroup;
-  displayedColumns: string[] = ['first_name', 'last_name', 'email', 'country', 'function', 'type_of_contact', 'addedBy', 'action'];
+  displayedColumns: string[] = ['first_name', 'last_name', 'email', 'country', 'function', 'type', 'addedBy', 'action'];
   dataSource = [];
 
   @ViewChild(MatTable) table: MatTable<any>;
@@ -32,7 +32,7 @@ export class ContactComponent implements OnInit {
       email: [null, [Validators.required, Validators.email]],
       country: [null, [Validators.required]],
       functions: [null, [Validators.required]],
-      type_of_contact: [null, [Validators.required]]
+      type: [null, [Validators.required]]
     });
 
     const projectData = this.projectService.getProjectData();

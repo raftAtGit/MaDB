@@ -13,7 +13,7 @@ import { FormLibrary } from 'src/app/shared/libraries/form.lib';
 })
 export class BudgetComponent implements OnInit {
   form: FormGroup;
-  displayedColumns: string[] = ['budget', 'financialYear', 'addedBy', 'action'];
+  displayedColumns: string[] = ['budget', 'financial_year', 'addedBy', 'action'];
   dataSource = [];
 
   @ViewChild(MatTable) table: MatTable<any>;
@@ -28,7 +28,7 @@ export class BudgetComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       budget: [null, [Validators.required]],
-      financialYear: [null, [Validators.required]]
+      financial_year: [null, [Validators.required]]
     });
 
     const projectData = this.projectService.getProjectData();

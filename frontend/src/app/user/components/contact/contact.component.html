@@ -56,15 +56,13 @@
 
     <!-- Type of Contact -->
     <mat-form-field class="form-item">
-      <mat-label for="type_of_contact">Type of Contact</mat-label>
-      <input matInput name="type_of_contact" formControlName="type_of_contact">
-      
-      <mat-select name="type_of_contact" formControlName="type_of_contact">
+      <mat-label for="type">Type of Contact</mat-label>
+      <mat-select name="type" formControlName="type">
         <mat-option disabled>Select type of contact</mat-option>
         <mat-option value="Primary Contact">Primary Contact</mat-option>
         <mat-option value="Secondary Contact">Secondary </mat-option>
       </mat-select>
-      <mat-error *ngIf="form.get('type_of_contact').invalid">
+      <mat-error *ngIf="form.get('type').invalid">
         Type of Contact is <strong>required</strong>
       </mat-error>
     </mat-form-field>
@@ -99,9 +97,9 @@
         <th mat-header-cell *matHeaderCellDef>Function</th>
         <td mat-cell *matCellDef="let row">{{row.function}}</td>
       </ng-container>
-      <ng-container matColumnDef="type_of_contact">
+      <ng-container matColumnDef="type">
         <th mat-header-cell *matHeaderCellDef>Type of Contact</th>
-        <td mat-cell *matCellDef="let row">{{row.type_of_contact}}</td>
+        <td mat-cell *matCellDef="let row">{{row.type}}</td>
       </ng-container>
       <ng-container matColumnDef="addedBy">
         <th mat-header-cell *matHeaderCellDef>Added By</th>
