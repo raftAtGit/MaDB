@@ -22,6 +22,11 @@ public class AdminController {
 	@Autowired
 	private ProjectRepository projectRepository;
 
+	@GetMapping("/admin/all_projects")
+	List<Project> all() {
+		return projectRepository.findAll();
+	}
+	
 	@GetMapping("/admin/pending_projects")
 	List<Project> allPending() {
 		return projectRepository.findByStatus(Project.Status.PENDING);
