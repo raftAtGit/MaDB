@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTable } from '@angular/material/table';
 
 import { ProjectService, UserService } from '../../services';
+import { FormLibrary } from 'src/app/shared/libraries/form.lib';
 
 @Component({
   selector: 'app-partnership',
@@ -42,6 +43,7 @@ export class PartnershipComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     if (form.invalid) {
+      FormLibrary.markFormGroupTouched(form);
       return;
     }
 

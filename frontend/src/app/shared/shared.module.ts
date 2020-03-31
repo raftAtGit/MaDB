@@ -14,6 +14,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from '@angular/material/table';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const MATERIAL_MODULES = [
   MatAutocompleteModule,
@@ -26,7 +27,8 @@ const MATERIAL_MODULES = [
   MatRadioModule,
   MatSelectModule,
   MatSnackBarModule,
-  MatTableModule
+  MatTableModule,
+  MatTooltipModule
 ];
 
 import { AuthGuard } from './guards/auth.guard';

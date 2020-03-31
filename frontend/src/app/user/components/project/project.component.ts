@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 
 import { ProjectService, UserService } from '../../services';
+import { FormLibrary } from 'src/app/shared/libraries/form.lib';
 
 @Component({
   selector: 'app-project',
@@ -55,6 +56,7 @@ export class ProjectComponent implements OnInit {
 
   onSubmit(form: FormGroup) {
     if (form.invalid) {
+      FormLibrary.markFormGroupTouched(form);
       return;
     }
 
