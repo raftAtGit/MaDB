@@ -1,0 +1,73 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./variables.scss";
+
+/* DEFAULT STYLE */
+html { height: 100%; }
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  font-size: 1rem;
+  line-height: 1.5rem;
+
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.2rem; }
+  h3 { font-size: 1rem; }
+  h4 { font-size: .8rem; }
+  h1, h2, h3, h4 {
+    color: $accent;
+    text-transform: uppercase;
+  }
+  p { margin: 0; }
+  hr { color: lightgray; }
+}
+
+/* ALIGNMENT */
+.centered {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+.centered-vertically {
+  display: flex !important;
+  align-items: center;
+}
+.centered-horizontally {
+  display: flex !important;
+  justify-content: center;
+}
+
+/* ANGULAR MATERIAL */
+* [class^='mat-']:not(.mat-icon), * [class*='mat']:not(.mat-icon) {
+  font-family: $font-family;
+}
+
+section {
+  /* FORMS */
+  form {
+    width: 80%;
+    .form-item {
+      display: block;
+      min-height: 64px;
+      width: 100%;
+    }
+    .submit {
+      margin-top: 24px;
+      text-align: right;
+      button.disabled {
+        background-color: lightgrey;
+        color: white;
+      }
+    }
+  }
+  
+  /* TABLES */
+  table {
+    width: 80%;
+  }
+  
+  h3.table-title {
+    margin-left: 10%;
+    align-self: flex-start;
+  }
+}

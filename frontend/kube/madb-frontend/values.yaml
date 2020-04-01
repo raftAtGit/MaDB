@@ -1,0 +1,10 @@
+ingress:
+  host: madb.nl
+
+# number of pod replicas
+replicas: 1
+
+# Docker image of Pod
+image:
+  tag: latest
+  pullPolicy: IfNotPresent

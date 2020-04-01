@@ -1,0 +1,20 @@
+/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+/* TYPOGRAPHY */
+$font-family: Roboto, "Open Sans", sans-serif !default;
+
+/* LAYOUT */
+$screen-xs-min: 576px;
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+
+/* COLORS */
+$primary: #0072ce;
+$secondary: #58cae7;
+$tertiary: #ef008c;
+
+$accent: #ef008c;
+$disabled: #e6e6e6;

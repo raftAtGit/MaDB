@@ -1,0 +1,97 @@
+@import "src/assets/styles/variables.scss";
+
+section#intro {
+  padding: 24px 12px;
+}
+
+section#actions {
+  padding: 24px 12px;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    margin-top: 16px;
+
+    .card {
+      border-radius: 4px;
+      border: 1px solid #eee;
+      background-color: #fafafa;
+      height: 40px;
+      width: 200px;
+      margin: 0 8px 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.2s ease-in-out;
+      line-height: 24px;
+
+      &:not(:last-child) {
+        margin-right: 0;
+      }
+      
+      &.card-small {
+        height: 16px;
+        width: 168px;
+      }
+      
+      &.card-large {
+        height: 64px;
+        width: 168px;
+      }
+      
+      &:not(.highlight-card) {
+        cursor: pointer;
+      }
+
+      &:not(.highlight-card):hover {
+        transform: translateY(-3px);
+        box-shadow: 0 4px 17px rgba(black, 0.35);
+      }
+
+      &:not(.highlight-card):hover .material-icons path {
+        fill: rgb(105, 103, 103);
+      }
+
+      svg.material-icons {
+        height: 24px;
+        width: auto;
+
+        &:not(:last-child) {
+          margin-right: 8px;
+        }
+
+        path {
+          fill: #888;
+        }
+      }
+    }
+
+  }
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  section#actions {
+    .card-container {
+      > *:not(.circle-link) {
+        width: 100%;
+      }
+
+      .card:not(.highlight-card) {
+        height: 16px;
+        margin: 8px 0;
+      }
+    
+      .card.highlight-card span {
+        margin-left: 72px;
+      }
+    }
+  }
+}

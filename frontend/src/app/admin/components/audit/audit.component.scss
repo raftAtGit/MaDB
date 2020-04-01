@@ -1,0 +1,36 @@
+@import "src/assets/styles/variables.scss";
+
+section#audit {
+  #table-header {
+    display: flex;
+    justify-content: space-between;
+
+    h3 {
+      margin-left: 0;
+    }
+
+    svg {
+      margin-bottom: -6px;
+    }
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: 32px;
+    td.fit-width {
+      width: 1px;
+      white-space: nowrap;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 32px;
+
+    button:first-child {
+      background-color: lightgray;
+      margin-right: 16px;
+    }
+  }
+}

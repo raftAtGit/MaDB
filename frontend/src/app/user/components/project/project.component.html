@@ -1,0 +1,102 @@
+<section id="project" *ngIf="form">
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form)" autocomplete="false">
+    <h2>Project information</h2>
+    
+    <!-- Project type -->
+    <div class="form-item centered-vertically">
+      <mat-radio-group
+        formControlName="isNewProject">
+        <mat-radio-button [value]="true">
+          New project
+        </mat-radio-button>
+        <mat-radio-button [value]="false" [disabled]="!projects || !projects.length">
+          Existing project (Select Project ID from list)
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <!-- Project ID -->
+    <mat-form-field class="form-item">
+      <mat-label for="projectId">Project ID</mat-label>
+      <input matInput #projectId
+        [matAutocomplete]="auto"
+        name="projectId"
+        formControlName="projectId"
+        (input)="getProjectData(projectId.value)">
+      <mat-autocomplete #auto>
+        <ng-container *ngIf="!form.get('isNewProject').value && projects">
+          <mat-option *ngFor="let project of filteredProjects | async" [value]="project.projectId" (click)="getProjectData(project.projectId)">
+            <span>{{project.projectId}}</span> |
+            <small>{{project.name}}</small>
+          </mat-option>
+        </ng-container>
+      </mat-autocomplete>
+      <mat-error *ngIf="form.get('projectId').invalid">
+        Project ID is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    <!-- Project ID -->
+    <!-- <mat-form-field class="form-item" *ngIf="form.get('isNewProject').value">
+      <mat-label for="projectId">Project ID</mat-label>
+      <input matInput name="projectId" formControlName="projectId">
+      <mat-error *ngIf="form.get('projectId').invalid">
+        Project ID is <strong>required</strong>
+      </mat-error>
+    </mat-form-field> -->
+
+    <!-- Project name -->
+    <mat-form-field class="form-item">
+      <mat-label for="name">Project name</mat-label>
+      <input matInput name="name" formControlName="name">
+      <mat-error *ngIf="form.get('name').invalid">
+        Project name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    <!-- Start date -->
+    <mat-form-field class="form-item">
+      <mat-label for="start_date">Start date</mat-label>
+      <input matInput [matDatepicker]="start_date" name="start_date" formControlName="start_date">
+      <mat-datepicker-toggle matSuffix [for]="start_date"></mat-datepicker-toggle>
+      <mat-datepicker #start_date></mat-datepicker>
+      <mat-error *ngIf="form.get('start_date').invalid">
+        Start date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    <!-- End date -->
+    <mat-form-field class="form-item">
+      <mat-label for="end_date">End date</mat-label>
+      <input matInput [matDatepicker]="end_date" name="end_date" formControlName="end_date">
+      <mat-datepicker-toggle matSuffix [for]="end_date"></mat-datepicker-toggle>
+      <mat-datepicker #end_date></mat-datepicker>
+      <mat-error *ngIf="form.get('end_date').invalid">
+        End date is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    <!-- Summary -->
+    <mat-form-field class="form-item">
+      <mat-label for="summary">Summary</mat-label>
+      <textarea matInput name="summary" formControlName="summary" matTextareaAutosize></textarea>
+      <mat-error *ngIf="form.get('summary').invalid">
+        Summary is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    
+    <!-- Comments -->
+    <mat-form-field class="form-item">
+      <mat-label for="comments">Comments</mat-label>
+      <textarea matInput name="comments" formControlName="comments" matTextareaAutosize></textarea>
+    </mat-form-field>
+
+    <!-- Submit button -->
+    <div class="submit">
+      <button mat-button type="submit" color="accent" [class.disabled]="form.invalid">Next</button>
+    </div>
+
+  </form>
+
+</section>

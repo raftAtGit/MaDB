@@ -1,0 +1,55 @@
+<section id="intro">
+  <p>We hope you can all find this tool helpful to easily upload information on your ongoing projects and access a growing and evolving list of SOYEE activities across the Plan federation. The success of this tool really depends on all of us to contribute accurate, coherent and up to date information. It is and will remain a Work in Progress (WIP) for the foreseeable future. Feel free to share feedback! Thank you.</p>
+</section>
+
+<hr />
+
+<section id="actions">
+  <h2>Actions</h2>
+  <div class="card-container">
+    <div class="card card-large" tabindex="0" routerLink="/project">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      <span>Add Project</span>
+    </div>
+    <div class="card card-large" tabindex="0" routerLink="/project">
+      <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+      <span>Edit Project</span>
+    </div>
+  </div>
+
+  <ng-container *ngIf="projectService?.selectedProject() as selectedProject">
+    <hr />
+    <h3>Selected Project</h3>
+    <p><em>{{selectedProject.projectId}}: {{selectedProject.name}}</em></p>
+    <div class="card-container">
+      <div class="card card-large" tabindex="0" routerLink="/beneficiaries">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        <span>Add Beneficiaries</span>
+      </div>
+      <div class="card card-large" tabindex="0" routerLink="/budgets">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        <span>Add Budgets</span>
+      </div>
+      <div class="card card-large" tabindex="0" routerLink="/contacts">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        <span>Add Contacts</span>
+      </div>
+      <div class="card card-large" tabindex="0" routerLink="/countries">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        <span>Add Countries</span>
+      </div>
+      <div class="card card-large" tabindex="0" routerLink="/funding-sources">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        <span>Add Funding Sources</span>
+      </div>
+      <div class="card card-large" tabindex="0" routerLink="/partnerships">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        <span>Add Partnerships</span>
+      </div>
+      <div class="card card-large" tabindex="0" routerLink="/themes">
+        <svg class="material-icons" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+        <span>Add Themes</span>
+      </div>
+    </div>
+  </ng-container>
+</section>

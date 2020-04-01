@@ -1,0 +1,84 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: madb-frontend
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: madb-frontend
+          servicePort: 80
+---          
+apiVersion: v1
+kind: Service
+metadata:
+  name: madb-frontend
+  labels:
+    name: madb-frontend
+    madb-build-number: {{ .Values.image.tag | quote }}
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 80
+      targetPort: 80
+  selector:
+    app: madb-frontend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: madb-frontend
+  labels:
+    name: madb-frontend
+    madb-build-number: {{ .Values.image.tag | quote }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: madb-frontend
+  template:
+    metadata:
+      labels:
+        app: madb-frontend
+        name: madb-frontend
+        madb-build-number: {{ .Values.image.tag | quote }}
+    spec:
+      containers:
+      - name: madb-frontend
+        image: raft/madb-frontend: {{- .Values.image.tag }}
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        # volumeMounts:
+        #   - name: madb-frontend-config
+        #     subPath: environment.json
+        #     mountPath: /app/environments/environment.json
+      volumes:
+        - name: madb-frontend-config
+          configMap:
+             name: madb-frontend-config
+      imagePullSecrets:
+      - name: regcred
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: madb-frontend-config
+  labels:
+    name: madb-frontend
+    madb-build-number: {{ .Values.image.tag | quote }}
+data:
+  environment.json: |
+    {
+      "name": "prod",
+      "settings": {
+      }
+    }
+    

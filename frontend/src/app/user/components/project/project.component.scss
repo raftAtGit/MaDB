@@ -1,0 +1,15 @@
+@import "src/assets/styles/variables.scss";
+
+section#project {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  form {
+    .form-item {
+      .mat-radio-button:not(:first-child) {
+        margin-left: 24px;
+      }
+    }
+  }
+}
