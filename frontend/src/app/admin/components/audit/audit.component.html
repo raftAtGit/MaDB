@@ -117,20 +117,20 @@
               <th mat-header-cell *matHeaderCellDef>Country</th>
               <td mat-cell *matCellDef="let row">{{row.country}}</td>
             </ng-container>
-            <ng-container matColumnDef="function">
+            <ng-container matColumnDef="functions">
               <th mat-header-cell *matHeaderCellDef>Function</th>
-              <td mat-cell *matCellDef="let row">{{row.function}}</td>
+              <td mat-cell *matCellDef="let row">{{row.functions}}</td>
             </ng-container>
-            <ng-container matColumnDef="type_of_contact">
+            <ng-container matColumnDef="type">
               <th mat-header-cell *matHeaderCellDef>Type of Contact</th>
-              <td mat-cell *matCellDef="let row">{{row.type_of_contact}}</td>
+              <td mat-cell *matCellDef="let row">{{row.type}}</td>
             </ng-container>
             <ng-container matColumnDef="addedBy">
               <th mat-header-cell *matHeaderCellDef>Added By</th>
               <td mat-cell *matCellDef="let row">{{row.user}}</td>
             </ng-container>
-            <tr mat-header-row *matHeaderRowDef="['first_name', 'last_name', 'email', 'country', 'function', 'type_of_contact', 'addedBy']"></tr>
-            <tr mat-row *matRowDef="let row; columns: ['first_name', 'last_name', 'email', 'country', 'function', 'type_of_contact', 'addedBy'];"></tr>
+            <tr mat-header-row *matHeaderRowDef="['first_name', 'last_name', 'email', 'country', 'functions', 'type', 'addedBy']"></tr>
+            <tr mat-row *matRowDef="let row; columns: ['first_name', 'last_name', 'email', 'country', 'functions', 'type', 'addedBy'];"></tr>
           </table>
         </ng-container>
         <ng-template #noContact>
