@@ -21,7 +21,12 @@
     <!-- Partnership type -->
     <mat-form-field class="form-item">
       <mat-label for="partnership_type">Partnership Type</mat-label>
-      <input matInput name="partnership_type" formControlName="partnership_type">
+      <mat-select name="partnership_type" formControlName="partnership_type">
+        <mat-option disabled>Select partnership type</mat-option>
+        <mat-option *ngFor="let type of types" [value]="type">
+          {{type}}
+        </mat-option>
+      </mat-select>
       <mat-error *ngIf="form.get('partnership_type').invalid">
         Partnership Type is <strong>required</strong>
       </mat-error>

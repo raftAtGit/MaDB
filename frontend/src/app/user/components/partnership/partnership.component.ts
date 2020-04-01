@@ -13,6 +13,12 @@ import { FormLibrary } from 'src/app/shared/libraries/form.lib';
 })
 export class PartnershipComponent implements OnInit {
   form: FormGroup;
+  types: string[] = [
+    'Plan International National Office',
+    'Governmental / Intergovernmental',
+    'NGOs / Civil Society',
+    'Private Sector'
+  ];
   displayedColumns: string[] = ['partner', 'partnership_type', 'addedBy', 'action'];
   dataSource = [];
 
