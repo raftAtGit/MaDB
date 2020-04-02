@@ -1,0 +1,140 @@
+id;partner;partnerschip_type;user_name;project_id
+4000001;National Ministry of Education;Governmental / Intergovernmental;DummyDataMaDB;MDB872949
+4000002;National Ministry of Education;Governmental / Intergovernmental;DummyDataMaDB;MDB889194
+4000003;National Ministry of Education;Governmental / Intergovernmental;DummyDataMaDB;MDB892423
+4000004;National Ministry of Education;Governmental / Intergovernmental;DummyDataMaDB;MDB921777
+4000005;National Ministry of Education;Governmental / Intergovernmental;DummyDataMaDB;MDB934806
+4000006;National Ministry of Education;Governmental / Intergovernmental;DummyDataMaDB;MDB964176
+4000007;National Ministry of Education;Governmental / Intergovernmental;DummyDataMaDB;MDB997447
+4000008;National Ministry of Foreign Affairs;Governmental / Intergovernmental;DummyDataMaDB;MDB797324
+4000009;National Ministry of Foreign Affairs;Governmental / Intergovernmental;DummyDataMaDB;MDB807002
+4000010;National Ministry of Foreign Affairs;Governmental / Intergovernmental;DummyDataMaDB;MDB838354
+4000011;National Ministry of Foreign Affairs;Governmental / Intergovernmental;DummyDataMaDB;MDB845882
+4000012;National Ministry of Foreign Affairs;Governmental / Intergovernmental;DummyDataMaDB;MDB862477
+4000013;National Ministry of Foreign Affairs;Governmental / Intergovernmental;DummyDataMaDB;MDB865078
+4000014;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB112248
+4000015;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB119209
+4000016;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB127280
+4000017;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB150167
+4000018;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB176622
+4000019;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB183360
+4000020;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB201477
+4000021;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB216776
+4000022;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB218889
+4000023;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB219984
+4000024;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB230931
+4000025;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB254787
+4000026;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB289572
+4000027;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB338483
+4000028;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB358635
+4000029;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB368228
+4000030;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB392780
+4000031;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB452975
+4000032;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB467501
+4000033;UNESCO;Governmental / Intergovernmental;DummyDataMaDB;MDB471196
+4000034;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB481471
+4000035;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB483574
+4000036;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB496283
+4000037;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB497394
+4000038;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB503231
+4000039;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB503574
+4000040;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB503907
+4000041;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB528133
+4000042;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB547689
+4000043;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB627714
+4000044;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB681606
+4000045;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB700469
+4000046;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB728707
+4000047;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB735815
+4000048;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB762982
+4000049;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB782997
+4000050;United Nations;Governmental / Intergovernmental;DummyDataMaDB;MDB793275
+4000051;Green Cross;NGOs / Civil Society;DummyDataMaDB;MDB112248
+4000052;Green Cross;NGOs / Civil Society;DummyDataMaDB;MDB150167
+4000053;Green Cross;NGOs / Civil Society;DummyDataMaDB;MDB201477
+4000054;Green Cross;NGOs / Civil Society;DummyDataMaDB;MDB219984
+4000055;Green Cross;NGOs / Civil Society;DummyDataMaDB;MDB289572
+4000056;Green Cross;NGOs / Civil Society;DummyDataMaDB;MDB368228
+4000057;Save the Kids;NGOs / Civil Society;DummyDataMaDB;MDB119209
+4000058;Save the Kids;NGOs / Civil Society;DummyDataMaDB;MDB176622
+4000059;Save the Kids;NGOs / Civil Society;DummyDataMaDB;MDB216776
+4000060;Save the Kids;NGOs / Civil Society;DummyDataMaDB;MDB230931
+4000061;Save the Kids;NGOs / Civil Society;DummyDataMaDB;MDB338483
+4000062;Save the Kids;NGOs / Civil Society;DummyDataMaDB;MDB483574
+4000063;War Kid;NGOs / Civil Society;DummyDataMaDB;MDB127280
+4000064;War Kid;NGOs / Civil Society;DummyDataMaDB;MDB183360
+4000065;War Kid;NGOs / Civil Society;DummyDataMaDB;MDB218889
+4000066;War Kid;NGOs / Civil Society;DummyDataMaDB;MDB254787
+4000067;War Kid;NGOs / Civil Society;DummyDataMaDB;MDB358635
+4000068;War Kid;NGOs / Civil Society;DummyDataMaDB;MDB497394
+4000069;Plan International Belgium;Plan International National Office;DummyDataMaDB;MDB358635
+4000070;Plan International Belgium;Plan International National Office;DummyDataMaDB;MDB467501
+4000071;Plan International Belgium;Plan International National Office;DummyDataMaDB;MDB497394
+4000072;Plan International Belgium;Plan International National Office;DummyDataMaDB;MDB782997
+4000073;Plan International Germany;Plan International National Office;DummyDataMaDB;MDB119209
+4000074;Plan International Germany;Plan International National Office;DummyDataMaDB;MDB201477
+4000075;Plan International Germany;Plan International National Office;DummyDataMaDB;MDB216776
+4000076;Plan International Germany;Plan International National Office;DummyDataMaDB;MDB503231
+4000077;Plan International Germany;Plan International National Office;DummyDataMaDB;MDB547689
+4000078;Plan International Germany;Plan International National Office;DummyDataMaDB;MDB627714
+4000079;Plan International Germany;Plan International National Office;DummyDataMaDB;MDB793275
+4000080;Plan International Germany;Plan International National Office;DummyDataMaDB;MDB845882
+4000081;Plan International Germany;Plan International National Office;DummyDataMaDB;MDB921777
+4000082;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB112248
+4000083;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB183360
+4000084;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB218889
+4000085;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB219984
+4000086;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB254787
+4000087;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB289572
+4000088;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB338483
+4000089;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB368228
+4000090;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB392780
+4000091;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB452975
+4000092;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB481471
+4000093;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB483574
+4000094;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB503907
+4000095;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB528133
+4000096;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB681606
+4000097;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB700469
+4000098;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB735815
+4000099;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB762982
+4000100;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB797324
+4000101;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB889194
+4000102;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB892423
+4000103;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB934806
+4000104;Plan International Netherlands;Plan International National Office;DummyDataMaDB;MDB964176
+4000105;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB127280
+4000106;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB150167
+4000107;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB176622
+4000108;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB230931
+4000109;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB471196
+4000110;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB496283
+4000111;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB503574
+4000112;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB728707
+4000113;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB807002
+4000114;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB838354
+4000115;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB862477
+4000116;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB865078
+4000117;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB872949
+4000118;Plan International Sweden;Plan International National Office;DummyDataMaDB;MDB997447
+4000119;Accenture;Private Sector;DummyDataMaDB;MDB358635
+4000120;Accenture;Private Sector;DummyDataMaDB;MDB368228
+4000121;Accenture;Private Sector;DummyDataMaDB;MDB392780
+4000122;Accenture;Private Sector;DummyDataMaDB;MDB452975
+4000123;Accenture;Private Sector;DummyDataMaDB;MDB467501
+4000124;Accenture;Private Sector;DummyDataMaDB;MDB481471
+4000125;Accenture;Private Sector;DummyDataMaDB;MDB483574
+4000126;Accenture;Private Sector;DummyDataMaDB;MDB497394
+4000127;Accenture;Private Sector;DummyDataMaDB;MDB503907
+4000128;Accenture;Private Sector;DummyDataMaDB;MDB528133
+4000129;Accenture;Private Sector;DummyDataMaDB;MDB681606
+4000130;Accenture;Private Sector;DummyDataMaDB;MDB700469
+4000131;Accenture;Private Sector;DummyDataMaDB;MDB735815
+4000132;Accenture;Private Sector;DummyDataMaDB;MDB762982
+4000133;Accenture;Private Sector;DummyDataMaDB;MDB782997
+4000134;MacroSoft;Private Sector;DummyDataMaDB;MDB119209
+4000135;MacroSoft;Private Sector;DummyDataMaDB;MDB201477
+4000136;MacroSoft;Private Sector;DummyDataMaDB;MDB216776
+4000137;MacroSoft;Private Sector;DummyDataMaDB;MDB503231
+4000138;Miller, Decker & Brown;Private Sector;DummyDataMaDB;MDB127280
+4000139;Miller, Decker & Brown;Private Sector;DummyDataMaDB;MDB150167

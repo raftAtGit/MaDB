@@ -1,8 +1,11 @@
 package org.madb.api.config;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.Map;
 
 import org.madb.api.jpa.BeneficiaryRepository;
 import org.madb.api.jpa.BudgetRepository;
@@ -27,6 +30,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.ClassPathResource;
+
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -56,7 +64,7 @@ class DataInitializer {
 	private FundingRepository fundingRepository;
         
     @Autowired
-	private BeneficiaryRepository beneficiariesRepository;
+	private BeneficiaryRepository beneficiaryRepository;
         
     @Autowired
 	private ThemeRepository themeRepository;
@@ -70,54 +78,184 @@ class DataInitializer {
 	@Bean
 	CommandLineRunner createInitialRecords() {
 	    return args -> {
+
 	    	log.info("creating initial database records");
 	    	
+	    	preloadCountries();
 	    	
-	    	for (String country : countries) {
-		    	log.info("Preloading " + countryRepository.save(new Country(NO_ID, country)));
-	    	}
-	    	
-	    	Country egypt = countryRepository.findByName("Egypt"); 
-	    	Country burkinaFaso = countryRepository.findByName("Burkina Faso"); 
-	    	
-	    	Project project = new Project(NO_ID, Project.Status.PENDING, "B1", "Promoting Quality Education in South West regions in Burkina Faso  (EQUIP)", 
-	    			date("01/01/2017"), date("31/12/2021"), new BigDecimal(1280925), "Cool project", "Partial YEE", "DummyUser1");
-	    	log.info("Preloading " + projectRepository.save(project));
-	    	log.info("Preloading " + projectRepository.save(new Project(NO_ID, Project.Status.APPROVED, "E1",   
-	    			"Pioneers for the Future: Contributing to a more inclusive work environment for young women in Egypt", 
-	    			date("01/01/2014"), date("31/12/2021"), new BigDecimal(634848), 
-	    			"The project constitutes a unique process of development based on a holistic and systemic approach, in compliance with the SDG's roadmap and UN recommendations on the empowerment of women, including recommendations on the implementation of the Convention on Elimination of All Forms of Discrimination against Women (CEDAW) in Egypt. Through a mainstreaming and transformative approach, gender equality at work can be a key contribution to the full enjoyment of fundamental women's rights. The project is the second phase of the Pioneers for the Future' project funded in Cairo by the Sawiris Foundation. It will build on the successes and lessons learned from the first phase as well as expand it to include national level advocacy on improving the work environment in Egypt, especially for women.", 
-	    			null, "DummyUser2")));
-	    	log.info("Preloading " + projectRepository.save(new Project(NO_ID, Project.Status.APPROVED, "E2",   
-	    			"Towards an inclusive socio-economic empowerment of young women and men in Egypt ", 
-	    			date("01/01/2014"), date("31/12/2021"), new BigDecimal(833939), 
-	    			" The project aims to enhance economic participation of young women and men aged 18-35, from marginalized areas of Cairo, Alexandria and Assuit in Egypt, and promote equal economic opportunities and decision making for young women. If youth have access to employability, entrepreneurship, relevant technical and innovative skills to access either wage or self-employment opportunities; and key stakeholders have the capacity and understanding to promote gender supportive work and business environment, then those youth will earn income and develop confidence, improving their long-term capabilities and economic status.", 
-	    			null, "DummyUser3")));
-
-	    	log.info("Preloading " + projectCountryRepository.save(new ProjectCountry(NO_ID, project, egypt, "DummyUser1")));
-	    	log.info("Preloading " + projectCountryRepository.save(new ProjectCountry(NO_ID, project, burkinaFaso, "DummyUser1")));
-	    	
-	    	log.info("Preloading " + budgetRepository.save(new Budget(NO_ID, project, "2019-2020", new BigDecimal(100000), "DummyUser1")));
-                
-	    	log.info("Preloading " + contactRepository.save(new Contact(NO_ID, project, "Primary", "Paul", "Brown", "Burkina Faso", "paul@nowhere.com", "Account Manager", "DummyUser1")));
-	    	log.info("Preloading " + contactRepository.save(new Contact(NO_ID, project, "Secondary", "Bob", "Smith", "Burkina Faso", "bob@somewhere,org", "Junior Account Manager", "DummyUser1")));
-	    	
-	        log.info("Preloading " + themeRepository.save(new Theme(NO_ID, project, "Digital", "DummyUser1")));
-	        log.info("Preloading " + fundingRepository.save(new Funding(NO_ID, project, "Child sponsorship", "DummyUser1")));        
-	        log.info("Preloading " + beneficiariesRepository.save(new Beneficiary(NO_ID, project, "Male", "2014", 5, "DummyUser1"))); 
-	        log.info("Preloading " + partnershipRepository.save(new Partnership(NO_ID, project, "Private Sector", "French companies in Egypt", "DummyUser1")));
+	    	preloadProjects();
+	    	preloadProjectCountries();
+	    	preloadThemes();
+	    	preloadPartnerships();
+	    	preloadFundings();
+	    	preloadContacts();
+	    	preloadBeneficaries();
+	    	preloadBudgets();
 	    };
 	}	
 
-	static Date now() {
-		return new Date(System.currentTimeMillis());
+	private void preloadCountries() {
+    	for (String country : countries) {
+    		log.debug("Preloading " + countryRepository.save(new Country(NO_ID, country)));
+    	}
+    	log.info("Preloaded {} countries", countries.length);
 	}
 	
-	static Date date(String s) throws Exception {
-		return new Date(new SimpleDateFormat("dd/mm/yyyy").parse(s).getTime());
+	private void preloadProjects() throws Exception {
+    	List<Map<String, String>> list = loadCsv("/data/projects.csv");
+    	
+    	for (Map<String, String> map : list) {
+    		Project project = new Project();
+    		
+    		project.setStatus(Project.Status.APPROVED);
+    		project.setProjectId(map.get("project_id"));
+    		project.setName(map.get("name_of_project"));
+    		project.setStartDate(date(map.get("project_start_date"), "dd/mm/yyyy"));
+    		project.setEndDate(date(map.get("project_end_date"), "dd-mm-yyyy"));
+    		project.setBudget(BigDecimal.valueOf(Long.parseLong(map.get("project_budget").trim())));
+    		project.setSummary(map.get("summary"));
+    		project.setComments(map.get("comments"));
+    		project.setUser(map.get("user_name"));
+
+    		log.debug("Preloading " + projectRepository.save(project));
+    	}
+    	log.info("Preloaded {} projects", list.size());
+	}
+
+	private void preloadProjectCountries() throws Exception {
+    	List<Map<String, String>> list = loadCsv("/data/project_countries.csv");
+    	
+    	for (Map<String, String> map : list) {
+    		ProjectCountry projectCountry = new ProjectCountry();
+    		
+    		projectCountry.setProject(projectRepository.findByProjectId(map.get("project_id")).get());
+    		projectCountry.setCountry(countryRepository.findById(Integer.parseInt(map.get("country_id"))).get());
+    		projectCountry.setUser(map.get("user_name"));
+
+    		log.debug("Preloading " + projectCountryRepository.save(projectCountry));
+    	}
+    	log.info("Preloaded {} projects countries", list.size());
+	}
+
+	private void preloadThemes() throws Exception {
+    	List<Map<String, String>> list = loadCsv("/data/themes.csv");
+    	
+    	for (Map<String, String> map : list) {
+    		Theme theme = new Theme();
+    		
+    		theme.setProject(projectRepository.findByProjectId(map.get("project_id")).get());
+    		theme.setTheme(map.get("theme"));
+    		theme.setUser(map.get("user_name"));
+
+    		log.debug("Preloading " + themeRepository.save(theme));
+    	}
+    	log.info("Preloaded {} themes", list.size());
 	}
 	
-	static final String[] countries = {
+	private void preloadPartnerships() throws Exception {
+    	List<Map<String, String>> list = loadCsv("/data/partnerships.csv");
+    	
+    	for (Map<String, String> map : list) {
+    		Partnership partnership = new Partnership();
+    		
+    		partnership.setProject(projectRepository.findByProjectId(map.get("project_id")).get());
+    		partnership.setPartner(map.get("partner"));
+    		partnership.setPartnershipType(map.get("partnerschip_type"));
+    		partnership.setUser(map.get("user_name"));
+
+    		log.debug("Preloading " + partnershipRepository.save(partnership));
+    	}
+    	log.info("Preloaded {} partnerships", list.size());
+	}
+	
+	private void preloadFundings() throws Exception {
+    	List<Map<String, String>> list = loadCsv("/data/fundings.csv");
+    	
+    	for (Map<String, String> map : list) {
+    		Funding funding = new Funding();
+    		
+    		funding.setProject(projectRepository.findByProjectId(map.get("project_id")).get());
+    		funding.setFundingSource(map.get("funding_source"));
+    		funding.setUser(map.get("user_name"));
+
+    		log.debug("Preloading " + fundingRepository.save(funding));
+    	}
+    	log.info("Preloaded {} fundings", list.size());
+	}
+	
+	private void preloadContacts() throws Exception {
+    	List<Map<String, String>> list = loadCsv("/data/contacts.csv");
+    	
+    	for (Map<String, String> map : list) {
+    		Contact contact = new Contact();
+    		
+    		contact.setProject(projectRepository.findByProjectId(map.get("project_id")).get());
+    		contact.setType(map.get("type_of_contact"));
+    		contact.setFirstName(map.get("first_name"));
+    		contact.setLastName(map.get("last_name"));
+    		contact.setCountry(map.get("country"));
+    		contact.setEmail(map.get("email"));
+    		contact.setFunctions(map.get("functions"));
+    		contact.setUser(map.get("user_name"));
+
+    		log.debug("Preloading " + contactRepository.save(contact));
+    	}
+    	log.info("Preloaded {} contacts", list.size());
+	}
+	
+	private void preloadBeneficaries() throws Exception {
+    	List<Map<String, String>> list = loadCsv("/data/beneficaries.csv");
+    	
+    	for (Map<String, String> map : list) {
+    		Beneficiary beneficiary = new Beneficiary();
+    		
+    		beneficiary.setProject(projectRepository.findByProjectId(map.get("project_id")).get());
+    		beneficiary.setFinancialYear(map.get("financial_year"));
+    		beneficiary.setGender(map.get("gender"));
+    		beneficiary.setNumberOfBeneficiaries(Integer.parseInt(map.get("number_of_beneficiaries")));
+    		beneficiary.setUser(map.get("user_name"));
+
+    		log.debug("Preloading " + beneficiaryRepository.save(beneficiary));
+    	}
+    	log.info("Preloaded {} beneficaries", list.size());
+	}
+	
+	private void preloadBudgets() throws Exception {
+    	List<Map<String, String>> list = loadCsv("/data/budgets.csv");
+    	
+    	for (Map<String, String> map : list) {
+    		Budget budget = new Budget();
+    		
+    		budget.setProject(projectRepository.findByProjectId(map.get("project_id")).get());
+    		budget.setFinancialYear(map.get("financial_year"));
+    		budget.setBudget(BigDecimal.valueOf(Long.parseLong(map.get("budget").trim())));
+    		budget.setUser(map.get("user_name"));
+
+    		log.debug("Preloading " + budgetRepository.save(budget));
+    	}
+    	log.info("Preloaded {} budgets", list.size());
+	}
+	
+	private List<Map<String, String>> loadCsv(String fileName) throws Exception {
+        CsvSchema bootstrapSchema = CsvSchema.emptySchema()
+        		.withHeader()
+        		.withColumnSeparator(';');
+        
+        CsvMapper mapper = new CsvMapper();
+        File file = new ClassPathResource(fileName).getFile();
+        
+        MappingIterator<Map<String, String>> readValues = mapper.readerFor(Map.class)
+        		.with(bootstrapSchema)
+        		.readValues(file);
+        
+        return readValues.readAll();
+	}	
+	
+	private static Date date(String s, String format) throws Exception {
+		return new Date(new SimpleDateFormat(format).parse(s).getTime());
+	}
+	
+	private static final String[] countries = {
 			"Australia", 
 			"Bangladesh", 
 			"Belgium", 
