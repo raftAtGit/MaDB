@@ -110,8 +110,8 @@ class DataInitializer {
     		project.setStatus(Project.Status.APPROVED);
     		project.setProjectId(map.get("project_id"));
     		project.setName(map.get("name_of_project"));
-    		project.setStartDate(date(map.get("project_start_date"), "dd/mm/yyyy"));
-    		project.setEndDate(date(map.get("project_end_date"), "dd-mm-yyyy"));
+    		project.setStartDate(date(map.get("project_start_date"), "dd/MM/yyyy"));
+    		project.setEndDate(date(map.get("project_end_date"), "dd-MM-yyyy"));
     		project.setBudget(BigDecimal.valueOf(Long.parseLong(map.get("project_budget").trim())));
     		project.setSummary(map.get("summary"));
     		project.setComments(map.get("comments"));
