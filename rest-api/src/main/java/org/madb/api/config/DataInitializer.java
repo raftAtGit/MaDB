@@ -1,6 +1,6 @@
 package org.madb.api.config;
 
-import java.io.File;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -242,11 +242,11 @@ class DataInitializer {
         		.withColumnSeparator(';');
         
         CsvMapper mapper = new CsvMapper();
-        File file = new ClassPathResource(fileName).getFile();
+        InputStream in = new ClassPathResource(fileName).getInputStream();
         
         MappingIterator<Map<String, String>> readValues = mapper.readerFor(Map.class)
         		.with(bootstrapSchema)
-        		.readValues(file);
+        		.readValues(in);
         
         return readValues.readAll();
 	}	
